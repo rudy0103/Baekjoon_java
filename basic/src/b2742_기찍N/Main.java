@@ -1,4 +1,4 @@
-package b2741_N찍기;
+package b2742_기찍N;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,7 +13,7 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		int N = Integer.parseInt(br.readLine());
-		for(int i=1; i<=N;i++) {
+		for(int i=N; i>=1;i--) {
 			bw.write(i+"\n");
 		}
 		bw.flush();
