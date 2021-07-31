@@ -39,12 +39,10 @@ public class Main {
 			int distance = y - 1 - x;
 			mid = x + distance / 2 + 1;
 			int k = 1;
+			
 			while (k * (k + 1) / 2 <= distance / 2.0) {
 				k++;
 			}
-			max = (k) * 2;
-			func(y - 1, x, 1, 0);
-			System.out.println(min);
 		}
 	}
 }

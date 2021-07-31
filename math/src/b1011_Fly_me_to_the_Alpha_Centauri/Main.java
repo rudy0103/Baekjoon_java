@@ -20,7 +20,7 @@ public class Main {
 			long k=1L;
 			
 			while((long)(start+k*(k+1))<end) {
-				k+=10000;
+				k*=10;
 			}
 			
 			while(start+k*(k+1)>=end) {
