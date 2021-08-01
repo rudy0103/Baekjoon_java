@@ -11,20 +11,15 @@ public class Main {
 	public static int[] arr;
 	public static int[] visited;
 
-	public static void bruteForce(int a, int l) {
+	public static void bruteForce(int a, int l,int sum) {
 		if (l == 3) {
-			int sum = 0;
-			for (int i = 0; i < visited.length; i++) {
-				if (visited[i] == 1)
-					sum += arr[i];
-			}
 			if (sum >= max && sum <= m) {
 				max = sum;
 			}
 		} else {
 			for (int i = a + 1; i < arr.length; i++) {
 				visited[i] = 1;
-				bruteForce(i, l + 1);
+				bruteForce(i, l + 1,sum+arr[i]);
 				visited[i] = 0;
 			}
 		}
@@ -45,10 +40,9 @@ public class Main {
 		}
 		for (i = 0; i < arr.length; i++) {
 			visited[i] = 1;
-			bruteForce(i, 1);
+			bruteForce(i, 1,arr[i]);
 			visited[i] = 0;
 		}
 		System.out.println(max);
 	}
-
 }
