@@ -3,7 +3,7 @@ package b10870_피보나치수5;
 import java.util.Scanner;
 
 public class Main {
-	
+	static int cnt,cnt2;
 	public static int func(int n) {
 		if(n==0) {
 			return 0;
