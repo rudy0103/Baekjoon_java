@@ -1,4 +1,4 @@
-package b15649_N과M_1;
+package b15649_N과M_1; //순열
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

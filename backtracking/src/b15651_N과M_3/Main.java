@@ -1,4 +1,4 @@
-package b15651_N과M_3;
+package b15651_N과M_3; //중복순열
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,7 +13,7 @@ public class Main {
 	static int a = 1;
 	static int[] arr;
 
-	static void permutation(int cnt) throws IOException {
+	static void backtracking(int cnt) throws IOException {
 		if (cnt == m) {
 
 			for (int num : arr) {
@@ -24,11 +24,11 @@ public class Main {
 			for (int i = 1; i <= n; i++) {
 				if (cnt == 0) {
 					arr[cnt] = i;
-					permutation(cnt + 1);
+					backtracking(cnt + 1);
 				}
 				else if (i >= arr[cnt - 1]) {
 					arr[cnt] = i;
-					permutation(cnt + 1);
+					backtracking(cnt + 1);
 				}
 			}
 		}
@@ -41,7 +41,7 @@ public class Main {
 		m = Integer.parseInt(inp[1]);
 		arr = new int[m];
 
-		permutation(0);
+		backtracking(0);
 		bw.flush();
 		bw.close();
 	}

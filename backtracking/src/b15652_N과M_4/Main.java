@@ -1,4 +1,4 @@
-package b15652_N과M_4;
+package b15652_N과M_4;  //중복조합
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,7 +13,7 @@ public class Main {
 	static int a = 1;
 	static int[] arr;
 
-	static void permutation(int cnt) throws IOException {
+	static void backtracking(int cnt,int start) throws IOException {
 		if (cnt == m) {
 
 			for (int num : arr) {
@@ -21,15 +21,10 @@ public class Main {
 			}
 			bw.write("\n");
 		} else {
-			for (int i = 1; i <= n; i++) {
-				if (cnt == 0) {
-					arr[cnt] = i;
-					permutation(cnt + 1);
-				}
-				else if (i >= arr[cnt - 1]) {
-					arr[cnt] = i;
-					permutation(cnt + 1);
-				}
+			for (int i = start; i <= n; i++) {
+				arr[cnt] =i;
+				backtracking(cnt+1,i);
+	
 			}
 		}
 	}
@@ -41,7 +36,7 @@ public class Main {
 		m = Integer.parseInt(inp[1]);
 		arr = new int[m];
 
-		permutation(0);
+		backtracking(0,1);
 		bw.flush();
 		bw.close();
 	}

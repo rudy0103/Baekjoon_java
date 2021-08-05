@@ -1,4 +1,4 @@
-package b15650_N과M_2;
+package b15650_N과M_2; //조합
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,7 +14,7 @@ public class Main {
 	static int n,m;
 	static int [] arr;
 
-	static void permutation(int cnt, int next) throws IOException {
+	static void combination(int cnt, int next) throws IOException {
 		if(cnt==m) {
 			for(int num:arr) {
 				bw.write(num+" ");
@@ -23,7 +23,7 @@ public class Main {
 		}else {
 			for(int i=next+1;i<=n;i++) {
 				arr[cnt]=i;
-				permutation(cnt+1,i);
+				combination(cnt+1,i);
 			}
 		}
 	}
@@ -34,7 +34,7 @@ public class Main {
 		n=Integer.parseInt(inp[0]);
 		m=Integer.parseInt(inp[1]);
 		arr = new int[m];
-		permutation(0,0);
+		combination(0,0);
 		bw.flush();
 		bw.close();
 	}
