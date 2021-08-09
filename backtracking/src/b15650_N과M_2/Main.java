@@ -21,9 +21,9 @@ public class Main {
 			}
 			bw.write("\n");
 		}else {
-			for(int i=next+1;i<=n;i++) {
+			for(int i=next;i<=n;i++) {
 				arr[cnt]=i;
-				combination(cnt+1,i);
+				combination(cnt+1,i+1);
 			}
 		}
 	}
@@ -34,7 +34,7 @@ public class Main {
 		n=Integer.parseInt(inp[0]);
 		m=Integer.parseInt(inp[1]);
 		arr = new int[m];
-		combination(0,0);
+		combination(0,1);
 		bw.flush();
 		bw.close();
 	}
