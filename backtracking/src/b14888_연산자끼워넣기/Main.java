@@ -45,11 +45,18 @@ public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		//n입력 받기
 		n = Integer.parseInt(br.readLine());
+		
+		//수열 입력받기
 		arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+		//연산자 입력받기
 		op= Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+		//연산자의 순서를 저장할 배열
 		selectedOp=new int[n-1];
+		//연산자 순열을 만드는 함수
 		makePermutation(0);
+		//max,min 출력
 		bw.write(max+"\n"+min);
 		bw.close();
 	}
