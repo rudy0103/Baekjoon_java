@@ -1,3 +1,4 @@
+package b2578_빙고;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;

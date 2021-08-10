@@ -23,10 +23,11 @@ public class Main {
 		int cnt=0;
 		int idx=k-1;
 		StringBuilder sb = new StringBuilder();
+		
 		sb.append("<");
 
 		while(cnt<n) {
-			while (idx<list.size()) {
+			while (list.size()!=1) {
 				sb.append(list.get(idx)+", ");
 				list.remove(idx);
 				idx+=(k-1);
@@ -34,7 +35,6 @@ public class Main {
 			}
 			if(idx>=list.size()) idx-=list.size();
 		}
-		
 		sb.setLength(sb.length() - 2);
 		sb.append(">");
 		bw.write(sb.toString());
