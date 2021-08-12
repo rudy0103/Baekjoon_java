@@ -24,15 +24,12 @@ public class Main {
 			int[][] arr = new int[n][m];
 
 			for (int i = 0; i < n; i++) {
-				for (int j = 0; j < m; j++)
-					arr[i][j] = origin[i][j];
+				System.arraycopy(origin[i], 0, arr[i], 0, origin[i].length);
 			}
 
 			for (int i = 0; i < k; i++) {
-				int r = selected[i][0];
-				int c = selected[i][1];
-				int s = selected[i][2];
-				rotate(r - s, c - s, r + s, c + s, arr);
+				rotate(selected[i][0] - selected[i][2], selected[i][1] - selected[i][2],
+						selected[i][0] + selected[i][2], selected[i][1] + selected[i][2], arr);
 			}
 
 			for (int i = 0; i < n; i++) {
@@ -65,10 +62,9 @@ public class Main {
 			int next_c = -1;
 
 			while (dir <= 3) {
-				if (before_r + dr[dir] >= r && before_r + dr[dir] <= bottom_r && before_c + dc[dir] >= c
-						&& before_c + dc[dir] <= right_c) {
-					next_r = before_r + dr[dir];
-					next_c = before_c + dc[dir];
+				next_r = before_r + dr[dir];
+				next_c = before_c + dc[dir];
+				if (next_r >= r && next_r <= bottom_r && next_c >= c && next_c <= right_c) {
 					arr[before_r][before_c] = arr[next_r][next_c];
 					before_r = next_r;
 					before_c = next_c;
@@ -105,7 +101,7 @@ public class Main {
 			command[i][1] = Integer.parseInt(inp[1]) - 1;
 			command[i][2] = Integer.parseInt(inp[2]);
 		}
-		
+
 		makePermutaion(0);
 		bw.write(min + "\n");
 		bw.close();
