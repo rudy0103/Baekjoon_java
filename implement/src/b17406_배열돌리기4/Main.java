@@ -26,12 +26,10 @@ public class Main {
 			for (int i = 0; i < n; i++) {
 				System.arraycopy(origin[i], 0, arr[i], 0, origin[i].length);
 			}
-
 			for (int i = 0; i < k; i++) {
 				rotate(selected[i][0] - selected[i][2], selected[i][1] - selected[i][2],
 						selected[i][0] + selected[i][2], selected[i][1] + selected[i][2], arr);
 			}
-
 			for (int i = 0; i < n; i++) {
 				int sum = 0;
 				for (int j = 0; j < m; j++)
@@ -71,7 +69,6 @@ public class Main {
 				} else {
 					dir++;
 				}
-
 			}
 			arr[r][c + 1] = tmp;
 			rotate(r + 1, c + 1, bottom_r - 1, right_c - 1, arr);
@@ -91,6 +88,7 @@ public class Main {
 			for (int j = 0; j < inp.length; j++)
 				origin[i][j] = Integer.parseInt(inp[j]);
 		}
+		
 		isSelected = new boolean[k];
 		command = new int[k][3];
 		selected = new int[k][3];
@@ -101,7 +99,7 @@ public class Main {
 			command[i][1] = Integer.parseInt(inp[1]) - 1;
 			command[i][2] = Integer.parseInt(inp[2]);
 		}
-
+		
 		makePermutaion(0);
 		bw.write(min + "\n");
 		bw.close();
