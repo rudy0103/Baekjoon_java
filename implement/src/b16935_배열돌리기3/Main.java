@@ -30,7 +30,7 @@ public class Main {
 		}
 	}
 
-	public static void do1() {
+	public static void do1() { //상하반전
 
 		for (int i = 0; i < n / 2; i++) {
 			for (int j = 0; j < m; j++) {
@@ -41,7 +41,7 @@ public class Main {
 		copy(tmp);
 	}
 
-	public static void do2() {
+	public static void do2() { //좌우반전
 
 		for (int c = 0; c < m / 2; c++) {
 			for (int r = 0; r < n; r++) {
@@ -53,7 +53,7 @@ public class Main {
 		copy(tmp);
 	}
 
-	public static void do3() {
+	public static void do3() { //오른쪽으로 90도 회전
 		int tmp_n = n;
 		n = m;
 		m = tmp_n;
@@ -66,7 +66,7 @@ public class Main {
 		copy(tmp);
 	}
 
-	public static void do4() {
+	public static void do4() { //왼쪽으로 90도 회전
 		int tmp_n = n;
 		n = m;
 		m = tmp_n;
@@ -79,7 +79,7 @@ public class Main {
 		copy(tmp);
 	}
 
-	public static void do5() {
+	public static void do5() { //4등분 후 시계방향
 
 		for (int r = 0; r < n / 2; r++) {
 			for (int c = 0; c < m / 2; c++) {
@@ -108,8 +108,7 @@ public class Main {
 		copy(tmp);
 	}
 
-	public static void do6() {
-
+	public static void do6() { //4등분 후 반시계 방향
 		for (int r = 0; r < n / 2; r++) {
 			for (int c = 0; c < m / 2; c++) {
 				tmp[r + n / 2][c] = arr[r][c];
@@ -171,6 +170,7 @@ public class Main {
 				do6();
 		}
 		print(arr);
+		br.close();
 		bw.close();
 
 	}

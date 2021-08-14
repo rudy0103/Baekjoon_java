@@ -3,6 +3,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -35,7 +36,7 @@ class Pair {
       return "Pair [x=" + x + ", y=" + y + "]";
    }
 }
-public class Main {
+public class CastleDefense_B_17135 {
    static int N, M, D, minD, minX, minY;
    static int kill, maxKill = 0;
    static int[][] map;   // 격자판
@@ -67,7 +68,6 @@ public class Main {
          archerPlace();
          attack();
          initMap();
-         System.out.println(kill);
          if(kill > maxKill) {   // 최대 처치 수 저장
             maxKill = kill;
          }
@@ -77,8 +77,8 @@ public class Main {
          }*/
       }while(np(map[N]));
 //      System.out.println(Arrays.deepToString(map));
-      bw.write(maxKill+"\n");
-      bw.write(kill+"");
+      bw.write(maxKill);
+      bw.write(kill);
       bw.flush();
       bw.close();
       br.close();
@@ -93,9 +93,7 @@ public class Main {
       int i = N-1;
       while(i>0 && numbers[i-1]>=numbers[i]) --i;
       
-      if(i==0) {
-         return false;
-      }
+      if(i==0) return false;
       
       // step2. i-1 위치값과 교환할 큰 값 찾기
       int j = N-1;      
@@ -123,10 +121,8 @@ public class Main {
       kill = 0;   // 새로운 조합으로 계산 시 처치수 초기화
       for (int i=0; i<N; i++) {   // 적을 탐색하고 처치하는 로직
          enemy = new boolean[N][M];
-         for (int ANum=0; ANum<3; ANum++) {
+         while (Axy.size()!=0) {
             Pair location = Axy.poll();
-            Axy.add(location);
-            minD = Integer.MAX_VALUE;
             minX = 0;
             minY = 0;
             for (int p =0; p<M; p++) {
@@ -134,7 +130,7 @@ public class Main {
                   int tempD = distance(location, q, p);
                   if (map[q][p]==1 && tempD <=D) {
                      if (minD > tempD) {
-                        minD = tempD;
+                        minD = distance(location, q, p);
                         minX = q;
                         minY = p;
                      }
@@ -165,6 +161,7 @@ public class Main {
          for (int z=0; z<M; z++) {   // 적들이 움직이면 가장 윗줄은 0으로 초기화
             map[0][z] = 0;
          }
+//         System.out.println(Arrays.deepToString(map));
       }
    }
    
