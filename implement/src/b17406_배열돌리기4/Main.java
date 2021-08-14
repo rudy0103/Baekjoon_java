@@ -22,7 +22,7 @@ public class Main {
 	public static void makePermutaion(int cnt) throws IOException {
 		if (cnt == k) {
 			int[][] arr = new int[n][m]; // 연산의 순서를 다르게 해서 여러번 수행하기 때문에
-											// 기존의 값을 복사해서 사용해야 합니다.
+											//기존의 값을 복사해서 사용해야 합니다.
 
 			for (int i = 0; i < n; i++) { // 기존의 배열을 복사
 				System.arraycopy(origin[i], 0, arr[i], 0, origin[i].length);
