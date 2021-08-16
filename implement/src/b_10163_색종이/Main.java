@@ -1,4 +1,4 @@
-package b_10163;
+package b_10163_색종이;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
