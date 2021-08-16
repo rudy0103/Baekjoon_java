@@ -1,9 +1,7 @@
 package b2527_직사각형;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -11,7 +9,6 @@ class Main {
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		int n = 4;
 
 		while (n-- > 0) {
@@ -52,7 +49,7 @@ class Main {
 				System.out.println("c");
 				continue;
 			}
-			else if(rect1_width+rect2_width==width||rect1_height+rect2_height==height) {
+			else if(rect1_width+rect2_width==width||rect1_height+rect2_height==height) { //선분
 				System.out.println("b");
 				continue;
 			}else {
