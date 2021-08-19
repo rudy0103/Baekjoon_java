@@ -46,7 +46,6 @@ public class Main {
 			isTrue=false;
 			backtracking(id, 0, id);
 		}
-
 		System.out.println(max);
 	}
 }
