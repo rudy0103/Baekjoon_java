@@ -17,7 +17,7 @@ public class Main {
 			}
 			return;
 		}
-		if (target_r >= left_r && target_r <= right_r && target_c >= left_c && target_c <= right_c) {
+		if (target_r >= left_r && target_r < right_r && target_c >= left_c && target_c < right_c) {
 			divideAndConquer(n / 2, left_r, left_c, right_r - n / 2, right_c - n / 2, start + 0*(n * n/4));
 			divideAndConquer(n / 2, left_r, left_c + n / 2, right_r - n / 2, right_c, start + 1*(n * n/4));
 			divideAndConquer(n / 2, left_r + n / 2, left_c, right_r, right_c - n / 2, start + 2*(n * n/4));
