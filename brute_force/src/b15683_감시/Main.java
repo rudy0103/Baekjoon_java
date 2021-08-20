@@ -78,14 +78,6 @@ public class Main {
 	static int C;
 	static ArrayList<CCTV> list;
 
-	public static void printMap(int[][] map) {
-
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++)
-				System.out.print(map[i][j] + " ");
-			System.out.println();
-		}
-	}
 
 	public static int getArea(int[][] map) {
 		int cnt = 0;
@@ -105,7 +97,7 @@ public class Main {
 			return;
 		}
 
-		for (int i = start; i < list.size(); i++) {
+		for (int i = start; i < C; i++) {
 			CCTV cctv = list.get(i);
 			for (int d = 0; d < cctv.dir.length; d++) {
 				cctv.changeDir(map, d, -1);
@@ -135,6 +127,7 @@ public class Main {
 				origin[i][j] = Integer.parseInt(st.nextToken());
 				if (origin[i][j] >= 1 && origin[i][j] <= 4) {
 					list.add(new CCTV(origin[i][j], i, j));
+					C++;
 				} else if (origin[i][j] == 5) {
 					cctv5.add(new int[] { i, j });
 				}
