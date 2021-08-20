@@ -13,10 +13,9 @@ public class Main {
 	static int max = 0;
 
 	public static void backtracking(int start, int cnt, int id) {
-
 		if (cnt == C - 1) {
-			max++;
-			isTrue = true;
+			max++; //연결이 되면 개수 증가
+			isTrue = true; // 더이상 분기 안되게 설정하는 flag
 			return;
 		}
 
@@ -25,7 +24,7 @@ public class Main {
 				if (map[i][cnt + 1] == '.') {
 					map[i][cnt + 1] = 'p';
 					backtracking(i, cnt + 1, id);
-					if (isTrue)
+					if (isTrue) // 설치가 완료됐으면 빠져나가야함
 						break;
 				}
 		}
@@ -42,8 +41,8 @@ public class Main {
 		for (int i = 0; i < R; i++)
 			map[i] = br.readLine().toCharArray();
 
-		for (int id = 0; id < R; id++) {
-			isTrue=false;
+		for (int id = 0; id < R; id++) { // 모든 행마다 설치 시도
+			isTrue = false;
 			backtracking(id, 0, id);
 		}
 		System.out.println(max);
