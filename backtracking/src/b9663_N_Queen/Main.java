@@ -8,8 +8,9 @@ public class Main {
 	
 	static public boolean isPossible(int col){
 		
-		for(int i=0;i<col;i++)
+		for(int i=0;i<col;i++) {
 			if(queens[col]==queens[i]) return false;
+		}
 		
 		for(int i=0;i<col;i++) {
 			if(Math.abs(col-i)==Math.abs(queens[col]-queens[i])) return false;
