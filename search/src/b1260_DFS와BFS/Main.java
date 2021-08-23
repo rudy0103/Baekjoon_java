@@ -18,10 +18,10 @@ public class Main {
 
 		LinkedList<Integer> li = list.get(s);
 
-		visited[s] = true;
 		sb.append(s).append(" ");
 		for (int n : li) {
 			if (!visited[n]) {
+				visited[n]=true;
 				dfs(n, list, visited);
 			}
 		}
@@ -63,8 +63,10 @@ public class Main {
 		for (LinkedList<Integer> l : list) {
 			Collections.sort(l);
 		}
-
-		dfs(S, list, new boolean[E + 1]);
+		
+		boolean [] visited=new boolean[E+1];
+		visited[S]=true;
+		dfs(S, list, visited);
 		sb.append("\n");
 		bfs(S, list, new boolean[E + 1]);
 
