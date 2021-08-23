@@ -32,12 +32,10 @@ class Main {
 				sb.append(String.valueOf(selected)).append("\n");
 			return;
 		}
-
 		for (int i = start; i < list.size(); i++) {
 			selected[cnt] = list.get(i);
 			makeCombination(cnt + 1, i + 1);
 		}
-
 	}
 
 	public static void main(String[] args) throws Exception {
