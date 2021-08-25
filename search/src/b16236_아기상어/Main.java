@@ -45,7 +45,7 @@ class BabyShark {
 		map[r][c] = 9;
 	}
 	
-	public boolean searchAndEat(PriorityQueue<int[]> pq) {
+	public boolean search(PriorityQueue<int[]> pq) {
 		
 		pq.add(new int[] {this.r,this.c,0});
 		visited[r][c]=true;
@@ -100,7 +100,7 @@ public class Main {
 		});
 		
 		while(true) {
-			if(!baby.searchAndEat(pq))
+			if(!baby.search(pq))
 				break;
 			for(int i=0;i<N;i++) Arrays.fill(visited[i],false);
 			pq.clear();
