@@ -1,37 +1,28 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main{
+public class Main {
 	
-	static double maxV=Double.MIN_VALUE;
-	
-	public static void getVolume(double X,double Y) {
-		
-		double small=X>Y?Y:X;
-		
-		for(double h=0.0001;h<small/2;h+=0.0001) {
-			double V=(X*Y-2*h*X-2*h*Y+4*h*h)*h;
-			if(V>maxV) maxV=V;
-			else break;
-		}
-	}
-	
-	public static void main(String[] args) throws NumberFormatException, IOException {
+	static int dr[] = {1,1,-1,-1};
+	static int dc[] = {1,-1,-1,1};
+	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int T=Integer.parseInt(br.readLine());
-		StringBuilder sb = new StringBuilder();
-		StringTokenizer st =null;
-		for(int tc=1;tc<=T;tc++) {
-			st = new StringTokenizer(br.readLine());
-			double X=Double.parseDouble(st.nextToken());
-			double Y=Double.parseDouble(st.nextToken());
-			maxV=Double.MIN_VALUE;
-			getVolume(X, Y);
-			maxV=(Math.round(maxV*1000000))/1000000.0;
-			sb.append("#").append(tc).append(" ").append(String.format("%.6f", maxV)).append("\n");
-		}
-		System.out.println(sb.toString());
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int W = Integer.parseInt(st.nextToken());
+		int H = Integer.parseInt(st.nextToken());
+		
+		st = new StringTokenizer(br.readLine());
+		int q = Integer.parseInt(st.nextToken()); //q가 컬럼
+		int p = Integer.parseInt(st.nextToken()); //p가 로우
+		int t = Integer.parseInt(br.readLine());
+		int x = (q+t)%(2*W);
+		int y = (p+t)%(2*H);
+		
+		x = W - Math.abs(W-x);
+		y = H - Math.abs(H-y);
+		
+		System.out.println(x+" "+y);
 	}
+
 }
