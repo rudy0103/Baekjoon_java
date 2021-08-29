@@ -35,7 +35,6 @@ public class Main {
 			}else {
 				bw.write(dq.size()+"\n");
 			}
-			
 		}
 		bw.close();
 	}
