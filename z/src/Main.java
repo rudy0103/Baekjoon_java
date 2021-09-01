@@ -1,81 +1,64 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-class Edge {
-	int to;
-	int w;
-	Edge link;
-
-	public Edge(int to, int w, Edge link) {
-		super();
-		this.to = to;
-		this.w = w;
-		this.link = link;
-	}
-}
-
 public class Main {
-	
-	public static void dijkstra(int start, Edge[] graph, int [] weight) {
-		weight[start] = 0;
-		PriorityQueue<int[]> pq=new PriorityQueue<>(new Comparator<int[]>() {
 
-			@Override
-			public int compare(int[] o1, int[] o2) {
-				return o1[1]-o2[1];
-			}
-		});
+	static int sec = Integer.MAX_VALUE;
+	static int height = Integer.MIN_VALUE;
+
+	public static void getMinSecMaxHeight(int[][] map, int s,int h) {
+		if (s > sec)
+			return;
+
+		if (s == sec) {
+			if (height < h)
+				height = h;
+		} else {
+			sec = s;
+			height = h;
+		}
+
+	}
+
+	public static void find(int[][]map,int h) {
+		int s=0;
 		
-		pq.add(new int[] {start,weight[start]});
-		
-		while(!pq.isEmpty()) {
-			int [] tmp=pq.poll();
-			
-			for(Edge e=graph[tmp[0]];e!=null;e=e.link) {
-				int next=e.to;
-				int newWeight=e.w+tmp[1];
-				if(weight[next]>newWeight) {
-					weight[next]=newWeight;
-					pq.add(new int[] {next,newWeight});
-				}
+		for(int i=0;i<map.length;i++) {
+			for(int j=0;j<map[0].length;j++) {
+				if(h-map[i][j]<0) {
+					s+=(map[i][j]-h)*2;
+				}else s+=(h-map[i][j]);
 			}
 		}
+		getMinSecMaxHeight(map, s, h);
 	}
-
-
+	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
-		StringBuilder sb = new StringBuilder();
 		String[] inp = br.readLine().split(" ");
-		int V = Integer.parseInt(inp[0]);
-		int E = Integer.parseInt(inp[1]);
-		int start = Integer.parseInt(br.readLine());
-
-		int[] weight = new int[V + 1];
-		Edge[] graph = new Edge[V + 1];
-
-		for (int i = 1; i <= E; i++) {
+		int N = Integer.parseInt(inp[0]);
+		int M = Integer.parseInt(inp[1]);
+		int B = Integer.parseInt(inp[2]);
+		int total = 0;
+		int[][] map = new int[N][M];
+		int size = N * M;
+		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
-			int from = Integer.parseInt(st.nextToken());
-			int to = Integer.parseInt(st.nextToken());
-			int w = Integer.parseInt(st.nextToken());
-			graph[from] = new Edge(to, w, graph[from]);
+			for (int j = 0; j < M; j++) {
+				map[i][j] = Integer.parseInt(st.nextToken());
+				total += map[i][j];
+			}
 		}
-
-		Arrays.fill(weight, Integer.MAX_VALUE);
-		dijkstra(start,graph, weight);
-
-		for (int i = 1; i <= V; i++) {
-			if (weight[i] == Integer.MAX_VALUE)
-				sb.append("INF\n");
-			else
-				sb.append(weight[i]).append("\n");
+		B+=total;
+		
+		for(int i=0;i<=256;i++) {
+			if(i*size<=B)
+				find(map, i);
+			else break;
 		}
-		System.out.println(sb.toString());
+		
+		System.out.println(sec+" "+height);
 	}
 }
