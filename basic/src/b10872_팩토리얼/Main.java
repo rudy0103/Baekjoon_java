@@ -3,7 +3,7 @@ package b10872_팩토리얼;
 import java.util.Scanner;
 
 public class Main {
-	public static int factorial(int n) {
+	public static long factorial(long n) {
 		
 		if(n==1 ||n==0) return 1;
 		else {
@@ -15,7 +15,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int n=sc.nextInt();
+		long n=sc.nextInt();
 		
 		System.out.println(factorial(n));
 	}
