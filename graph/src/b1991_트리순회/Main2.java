@@ -8,7 +8,9 @@ import java.util.StringTokenizer;
 
 public class Main2 {
 	static StringBuilder sb = new StringBuilder();
+	
 	static ArrayList<ArrayList<Integer>> tree=new ArrayList<>();
+	
 	public static void preorder(int n) {
 		if (n == -1)
 			return;
@@ -42,7 +44,7 @@ public class Main2 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		int N=Integer.parseInt(br.readLine());
-		for(int i=0;i<N;i++) tree.add(new ArrayList<>());
+		for(int i=0;i<N;i++) tree.add(new ArrayList<>()); //리스트를 생성해서 넣어주어야함
 		
 		for(int i=0;i<N;i++) {
 			st=new StringTokenizer(br.readLine());

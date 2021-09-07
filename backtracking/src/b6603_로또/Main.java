@@ -16,7 +16,6 @@ public class Main {
 			return;
 		}
 		
-		
 		for(int i=start;i<arr.length;i++) {
 			selected[depth]=arr[i];
 			lotto(depth+1, arr, selected, i+1);

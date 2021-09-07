@@ -15,8 +15,6 @@ class Node{
 		this.left = left;
 		this.right = right;
 	}
-	
-	
 }
 
 
@@ -53,6 +51,7 @@ public class Main {
 		StringTokenizer st = null;
 		int N=Integer.parseInt(br.readLine());
 		Node [] tree=new Node[N];
+		
 		for(int i=0;i<N;i++) tree[i]=new Node((char) ('A'+i),null,null);
 		
 		for(int i=0;i<N;i++) {
