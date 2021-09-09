@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 
+
 public class Main {
 
 	public static void main(String[] args) throws IOException {
@@ -13,44 +14,31 @@ public class Main {
 		char[] boomStr = br.readLine().toCharArray();
 		int len = boomStr.length;
 		StringBuilder sb = new StringBuilder();
-		ArrayDeque<Integer> q = new ArrayDeque<>();
-
-		for (int i = 0; i < inp.length; i++) {
-			if (inp[i] == boomStr[0])
-				q.add(i);
-		}
-		int cnt=len;
-		while (!q.isEmpty()) {
-			int pos = q.pollLast();
-			int tmp = 0;
-			int i = pos;
-			while (tmp < len) {
-				if (inp[i] == '@')
-					i+=len;
-				else if (inp[i] == boomStr[tmp]) {
-					i++;
-					tmp++;
-				} else {
-					break;
-				}
-
-				if (tmp == len) {
-					cnt=len;
-					while (cnt > 0) {
-						if (inp[pos] != '@') {
-							inp[pos] = '@';
-							pos++;
-							cnt--;
-						}else pos+=len;
+		ArrayDeque<Character> q = new ArrayDeque<>();
+		ArrayDeque<Character> q2 = new ArrayDeque<>();
+		for (int i = inp.length-1; i >= 0; i--) {
+			if(inp[i]!=boomStr[0]) q.add(inp[i]);
+			else {
+				int pos=1;
+				for(int j=0;j<len-1;j++) {
+					if(!q.isEmpty()&&boomStr[pos++]==q.peekLast())
+					{
+						q2.add(q.pollLast());
+					}
+					else {
+						while(!q2.isEmpty()) q.add(q2.pollLast());
+						q.add(inp[i]);
+						break;
 					}
 				}
+				q2.clear();
 			}
 		}
-
-		for (int i = 0; i < inp.length; i++) {
-			if (inp[i] != '@')
-				sb.append(inp[i]);
+		
+		while (!q.isEmpty()) {
+			sb.append(q.pollLast());
 		}
+
 		if(sb.toString().length()!=0) System.out.println(sb.toString());
 		else System.out.println("FRULA");
 	}
