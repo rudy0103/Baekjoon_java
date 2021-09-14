@@ -21,6 +21,7 @@ public class Main {
 		
 		for(int i=1;i<=K;i++) values[i]=-1;
 		
+		list.add(new int[] {0,0});
 		for(int i=1;i<=N;i++) {
 			st=new StringTokenizer(br.readLine());
 			int W=Integer.parseInt(st.nextToken());
@@ -28,16 +29,12 @@ public class Main {
 			list.add(new int[] {W,V});
 		}
 		
-		for(int[] a:list) {
-			int idx=-1;
-			int tmp=-1;
-			for(int i=0;i<=K-a[0];i++) {
-				if(values[i]>tmp) {
-					tmp=values[i];
-					idx=i;
+		for(int i=1;i<=N;i++) {
+			for(int j=K;j>=0;j--) {
+				if(j-list.get(i)[0]>=0&&values[j-list.get(i)[0]]!=-1) {
+					values[j]=Math.max(values[j], values[j-list.get(i)[0]]+list.get(i)[1]);
 				}
 			}
-			values[idx+a[0]]=values[idx]+a[1];
 		}
 		
 		int max=0;
