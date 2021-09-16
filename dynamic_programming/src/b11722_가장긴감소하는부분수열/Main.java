@@ -15,7 +15,7 @@ public class Main {
 		int n = Integer.parseInt(br.readLine());
 		int[] arr = new int[n];
 		int[] dp = new int[n+1];
-		Arrays.fill(dp, Integer.MIN_VALUE);
+		Arrays.fill(dp, Integer.MAX_VALUE);
 		st = new StringTokenizer(br.readLine(), " ");
 		
 		for (int i = 0; i < n; i++)
