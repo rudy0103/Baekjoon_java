@@ -22,27 +22,13 @@ class CCTV {
 		dc = new int[] { 0, 1, 0, -1 };
 
 		if (id == 1) {
-			this.dir = new int[4][1];
-			dir[0] = new int[] { 0 };
-			dir[1] = new int[] { 1 };
-			dir[2] = new int[] { 2 };
-			dir[3] = new int[] { 3 };
+			this.dir = new int[][] { { 0 }, { 1 }, { 2 }, { 3 } };
 		} else if (id == 2) {
-			this.dir = new int[2][2];
-			dir[0] = new int[] { 0, 2 };
-			dir[1] = new int[] { 1, 3 };
+			this.dir = new int[][] { { 0, 2 }, { 1, 3 } };
 		} else if (id == 3) {
-			this.dir = new int[4][2];
-			dir[0] = new int[] { 0, 1 };
-			dir[1] = new int[] { 1, 2 };
-			dir[2] = new int[] { 2, 3 };
-			dir[3] = new int[] { 3, 0 };
+			this.dir = new int[][] { { 0, 1 }, { 1, 2 }, { 2, 3 }, { 3, 0 } };
 		} else if (id == 4) {
-			this.dir = new int[4][3];
-			dir[0] = new int[] { 3, 0, 1 };
-			dir[1] = new int[] { 0, 1, 2 };
-			dir[2] = new int[] { 1, 2, 3 };
-			dir[3] = new int[] { 2, 3, 0 };
+			this.dir = new int[][] { { 3, 0, 1 }, { 0, 1, 2 }, { 1, 2, 3 }, { 2, 3, 0 } };
 		}
 
 	}
@@ -72,12 +58,7 @@ class CCTV {
 }
 
 public class Main {
-	static int N, M;
-	static int[][] origin;
 	static int min;
-	static int C;
-	static ArrayList<CCTV> list;
-
 
 	public static int getArea(int[][] map) {
 		int cnt = 0;
@@ -89,33 +70,32 @@ public class Main {
 		return cnt;
 	}
 
-	public static void getMinArea(int cnt, int start, int[][] map) {
-		if (cnt == C) {
+	public static void getMinArea(int cnt, int start, int[][] map, ArrayList<CCTV> list) {
+		if (cnt == list.size()) {
 			int c = getArea(map);
 			if (c < min)
 				min = c;
 			return;
 		}
 
-		for (int i = start; i < C; i++) {
-			CCTV cctv = list.get(i);
-			for (int d = 0; d < cctv.dir.length; d++) {
-				cctv.changeDir(map, d, -1);
-				getMinArea(cnt + 1, i + 1, map);
-				cctv.changeDir(map, d, 1);
-			}
+		CCTV cctv = list.get(start);
+		for (int d = 0; d < cctv.dir.length; d++) {
+			cctv.changeDir(map, d, -1);
+			getMinArea(cnt + 1, start + 1, map, list);
+			cctv.changeDir(map, d, 1);
 		}
 	}
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		list = new ArrayList<>();
+		ArrayList<CCTV> list = new ArrayList<>();
 		ArrayList<int[]> cctv5 = new ArrayList<>();
 		StringTokenizer st = null;
 		String[] inp = br.readLine().split(" ");
+		int N, M;
 		N = Integer.parseInt(inp[0]);
 		M = Integer.parseInt(inp[1]);
-		origin = new int[N][M];
+		int[][] origin = new int[N][M];
 		min = Integer.MAX_VALUE;
 		int[] dr = { -1, 0, 1, 0 };
 		int[] dc = { 0, 1, 0, -1 };
@@ -127,7 +107,6 @@ public class Main {
 				origin[i][j] = Integer.parseInt(st.nextToken());
 				if (origin[i][j] >= 1 && origin[i][j] <= 4) {
 					list.add(new CCTV(origin[i][j], i, j));
-					C++;
 				} else if (origin[i][j] == 5) {
 					cctv5.add(new int[] { i, j });
 				}
@@ -149,7 +128,7 @@ public class Main {
 				}
 			}
 		}
-		getMinArea(0, 0, origin);
+		getMinArea(0, 0, origin, list);
 		System.out.println(min);
 
 	}
