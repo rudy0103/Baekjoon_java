@@ -9,8 +9,6 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-
-
 public class Main {
 	
 	public static int cnt=0;
@@ -98,7 +96,7 @@ public class Main {
 			public int compare(int[] o1, int[] o2) {
 				return Integer.compare(o1[2], o2[2]);
 			}
-		}); //다리 정보 넣을 우선순위 큐
+		});
 		getBridge(q,map);
 		
 		int totalDistance=0;
