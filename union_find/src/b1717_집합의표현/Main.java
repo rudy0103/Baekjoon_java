@@ -7,19 +7,19 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-	public static int findSet(int x, int[] arr) {
+	public static int find(int x, int[] arr) {
 		if (x == arr[x])
 			return x;
 		else
-			return findSet(arr[x], arr);
+			return arr[x]=find(arr[x], arr);
 	}
 
 	public static void union(int a, int b, int[] arr, int[] rank) {
 		if (a == b)
 			return;
 
-		int setA = findSet(a, arr);
-		int setB = findSet(b, arr);
+		int setA = find(a, arr);
+		int setB = find(b, arr);
 		if (setA == setB)
 			return;
 		else {
@@ -53,7 +53,7 @@ public class Main {
 			if (Integer.parseInt(st.nextToken()) == 0) {
 				union(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), arr, rank);
 			} else {
-				if (findSet(Integer.parseInt(st.nextToken()), arr) == findSet(Integer.parseInt(st.nextToken()), arr)) {
+				if (find(Integer.parseInt(st.nextToken()), arr) == find(Integer.parseInt(st.nextToken()), arr)) {
 					sb.append("YES").append("\n");
 				} else
 					sb.append("NO").append("\n");

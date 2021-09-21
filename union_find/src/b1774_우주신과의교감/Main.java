@@ -34,12 +34,12 @@ public class Main {
 		return root[x] = find(root[x], root);
 	}
 
-	public static boolean union(int a, int b, int[] root) {
-		int A = find(a, root);
-		int B = find(b, root);
+	public static boolean union(int a, int b, int[] arr) {
+		int A = find(a, arr);
+		int B = find(b, arr);
 		if (A == B)
 			return false;
-		root[A] = B;
+		arr[A] = B;
 		return true;
 	}
 
