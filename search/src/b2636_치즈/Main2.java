@@ -1,3 +1,4 @@
+//큐를 2개 써서 하는 방법
 package b2636_치즈;
 
 import java.io.BufferedReader;
@@ -6,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main2 {
 
 	static int time = 0;
 	static int totalCnt = 0;
@@ -35,10 +36,14 @@ public class Main {
 		}
 
 		ArrayDeque<int[]> q = new ArrayDeque<>();//공기를 넣는 큐
-
+		ArrayDeque<int[]> q2 = new ArrayDeque<>();//치즈를 넣는 큐
+		q.add(new int[] { 0, 0 }); //0,0은 맨 처음 한번만
+		visited[0][0]=true;
 		do {
-			q.add(new int[] { 0, 0 }); //0,0은
-			visited[0][0]=true;
+			while (!q2.isEmpty()) { //녹은 치즈의 위치부터 탐색
+				q.add(q2.pollFirst());
+			}
+
 			int cnt=0;
 			while (!q.isEmpty()) {
 				int [] now=q.poll();
@@ -55,6 +60,7 @@ public class Main {
 							cnt++;// 카운트 증가
 							visited[rr][cc]=true; //방문처리
 							map[rr][cc]=0; //0으로 바꿈
+							q2.add(new int[] {rr,cc});
 						}else { //공기면
 							q.add(new int[] {rr,cc});
 							visited[rr][cc]=true;
@@ -68,12 +74,6 @@ public class Main {
 				System.out.println(totalCnt);
 				break;
 			}else totalCnt-=cnt;
-			
-			for(int i=0;i<H;i++) { //방문 처리 초기화
-				for(int j=0;j<W;j++)
-					visited[i][j]=false;
-			}
-			
 		} while (true);
 
 	}
