@@ -14,12 +14,12 @@ public class Main {
 		for (int i = 1; i <= N; i++) {
 			scores[i] = Integer.parseInt(br.readLine());
 		}
-		DP[1][0] = scores[1]; // 0 은 그 전 계단을 밝는 경우
-		DP[1][1] = scores[1];
+		DP[1][0] = scores[1]; // 0 은 그 전 계단을 밟았을 때
+		DP[1][1] = scores[1]; // 1 은 그 전 계단을 안 밟았을 경우
+		
 		if (N >= 2) {
 			DP[2][0] = scores[1] + scores[2];
 			DP[2][1] = scores[2];
-
 			for (int i = 3; i <= N; i++) {
 				DP[i][0] = DP[i - 1][1] + scores[i];
 				DP[i][1] = Math.max(DP[i - 2][1], DP[i - 2][0]) + scores[i];

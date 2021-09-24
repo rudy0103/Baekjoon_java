@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -124,7 +122,5 @@ public class Main {
 		}
 		map[airCleaner[1]][0]=-1;
 		map[airCleaner[1]][1]=0;
-		
 	}
-
 }
