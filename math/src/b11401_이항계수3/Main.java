@@ -19,7 +19,7 @@ public class Main {
 	}
 
 	private static long nCr(int n, int k) {
-		if(k==0) return 1;
+		if(k==0 || n==k) return 1;
 		if(k==1) return n;	
 
 		return (factorial(n))*(power(factorial(n-k),p-2))%p*(power(factorial(k),p-2))%p;
