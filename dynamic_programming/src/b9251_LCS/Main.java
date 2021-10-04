@@ -10,7 +10,7 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String tmpA = br.readLine();
 		String tmpB = br.readLine();
-		int N=tmpA.length(), M=tmpB.length();
+		int N = tmpA.length(), M = tmpB.length();
 		char[] A, B;
 		A = new char[N + 1];
 		B = new char[M + 1];
