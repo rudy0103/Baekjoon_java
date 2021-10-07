@@ -49,7 +49,7 @@ public class Main2 {
 					}else {
 						if(tmp[3]==1) {
 							q.add(new int[] {rr,cc,tmp[2]+1,tmp[3]-1});
-							visited[rr][cc][tmp[3]-1]=true;
+							visited[rr][cc][tmp[3]]=true;
 						}
 					}
 				}
