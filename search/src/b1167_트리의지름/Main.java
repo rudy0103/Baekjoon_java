@@ -10,18 +10,29 @@ import java.util.StringTokenizer;
 
 public class Main {
 
+	static class Edge {
+		int to;
+		int weight;
+		Edge link;
+
+		public Edge(int to, int weight, Edge link) {
+			super();
+			this.to = to;
+			this.weight = weight;
+			this.link = link;
+		}
+	}
+
 	static int N;
 	static int max;
-	static ArrayList<ArrayList<int[]>> tree = new ArrayList<>();
-	static boolean[] visited = new boolean[100001];
+	static Edge[] tree;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 
 		N = Integer.parseInt(br.readLine());
-		for (int i = 0; i <= N; i++)
-			tree.add(new ArrayList<int[]>());
+		tree = new Edge[N + 1];
 
 		for (int i = 1; i <= N; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
@@ -31,32 +42,31 @@ public class Main {
 				if (to == -1)
 					break;
 				int weight = Integer.parseInt(st.nextToken());
-				tree.get(from).add(new int[] { to, weight });
+				tree[from] = new Edge(to, weight, tree[from]);
 			}
 
 		}
-		dfs(1);
+		dfs(1, 0);
 		System.out.println(max);
 	}
 
-	private static int dfs(int n) {
-		visited[n] = true;
+	private static int dfs(int n, int before) {
 
-		if (tree.get(n).size() == 0)
+		if (tree[n] == null)
 			return 0;
 
 		int ret = 0;
-		ArrayList<int[]> list = tree.get(n);
 		PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
 			public int compare(Integer o1, Integer o2) {
 				return o2 - o1;
 			}
 		});
 
-		for (int i = 0; i < list.size(); i++) {
-			if (visited[list.get(i)[0]])
+		for (Edge edge = tree[n]; edge != null; edge = edge.link) {
+			int now = edge.to;
+			if (now == before)
 				continue;
-			int tmp = dfs(list.get(i)[0]) + list.get(i)[1];
+			int tmp = dfs(now, n) + edge.weight;
 			if (ret < tmp)
 				ret = tmp;
 			pq.add(tmp);
