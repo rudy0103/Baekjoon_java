@@ -11,6 +11,7 @@ public class Main {
 
 	public static int[][] arr;
 
+	
 	public static boolean isBingo(int num) {
 
 		for (int i = 0; i < arr.length; i++) {
@@ -72,6 +73,10 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		Queue<Integer> q = new LinkedList<Integer>();
+		
+		int[] dr = { -1, -1, -1, 0, 1, 1, 1, 0 }; // 좌상부터 시계방향
+	    int[] dc = { -1, 0, 1, 1, 1, 0, -1, -1 };
+		
 		arr = new int[5][5];
 		for (int i = 0; i < 5; i++) {
 			String[] inp = br.readLine().split(" ");
