@@ -13,18 +13,13 @@ public class Main {
 
 	public static void goingDown(int[][] map, int r, int c, int[][] dp) {
 
-		if (r == N - 1 && c == M - 1) {
-			cnt++;
-			return;
-		}
-
-		if (dp[r][c] > 0) {
+		if (dp[r][c] > 0) { //r,c dp 테이블이 0보다 크면  그 값을 더한다.
 			cnt += dp[r][c];
 			return;
 		}
 
 		for (int i = 0; i < 4; i++) {
-			int tmp = cnt;
+			int tmp = cnt; // 내리막길 가기 전 cnt를 저장함
 			int rr = r + dr[i];
 			int cc = c + dc[i];
 			if (rr >= 0 && rr < N && cc >= 0 && cc < M) {
@@ -53,9 +48,15 @@ public class Main {
 				map[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
-		dp[N-1][M-1]=1;
+		dp[N-1][M-1]=1; //도착점은 1로 해놔야함 
 		goingDown(map, 0, 0, dp);
 		System.out.println(cnt);
+		
+		for(int i=0;i<N;i++) {
+			for(int j=0;j<M;j++) {
+				System.out.println();
+			}
+		}
 
 	}
 }
