@@ -30,7 +30,8 @@ public class Main {
 		downIndex = N - 1;
 
 		while (true) {
-			rotate();// 회전
+			upIndex=getBefore(upIndex);
+			downIndex=getBefore(downIndex);
 			if (belt[downIndex] == 1) {
 				belt[downIndex] = 0; // 내리는 위치면 로봇을 내림
 			}
@@ -65,7 +66,6 @@ public class Main {
 				step++;
 
 		}
-
 		System.out.println(step);
 
 	}
@@ -76,15 +76,6 @@ public class Main {
 			return 2 * N - 1;
 		else
 			return n;
-	}
-
-	private static void rotate() {
-		upIndex--;
-		downIndex--;
-		if (upIndex < 0)
-			upIndex = 2 * N - 1;
-		if (downIndex < 0)
-			downIndex = 2 * N - 1;
 	}
 
 }
