@@ -81,12 +81,12 @@ public class Main {
 
 		for (int i = 0; i < K; i++) {
 			command(i);
-			mergeAndDived(i);
+			mergeAndDivide(i);
 		}
 		System.out.println(getMass());
 	}
 
-	private static void mergeAndDived(int moved) {
+	private static void mergeAndDivide(int moved) {
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
 				if (map[i][j].size() < 2)

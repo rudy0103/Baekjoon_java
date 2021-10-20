@@ -19,7 +19,7 @@ public class Main {
 
 			selected = new int[N];
 			visited = new boolean[7];
-			run2(0,1);
+			run2(0, 1);
 		} else {
 			selected = new int[N];
 			visited = new boolean[7];
@@ -30,21 +30,21 @@ public class Main {
 	}
 
 	private static void run1(int d) {
-		if(d==N) {
+		if (d == N) {
 			for (int i = 0; i < N; i++)
 				System.out.print(selected[i] + " ");
 			System.out.println();
 			return;
 		}
-		
+
 		for (int i = 1; i <= 6; i++) {
 			selected[d] = i;
 			run1(d + 1);
 		}
-		
+
 	}
 
-	private static void run2(int d,int s) {
+	private static void run2(int d, int s) {
 		if (d == N) {
 			for (int i = 0; i < N; i++)
 				System.out.print(selected[i] + " ");
@@ -54,7 +54,7 @@ public class Main {
 
 		for (int i = s; i <= 6; i++) {
 			selected[d] = i;
-			run2(d + 1,i);
+			run2(d + 1, i);
 
 		}
 	}
