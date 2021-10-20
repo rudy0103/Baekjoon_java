@@ -30,8 +30,8 @@ public class Main {
 		downIndex = N - 1;
 
 		while (true) {
-			upIndex=getBefore(upIndex);
-			downIndex=getBefore(downIndex);
+			upIndex = getBefore(upIndex);
+			downIndex = getBefore(downIndex);
 			if (belt[downIndex] == 1) {
 				belt[downIndex] = 0; // 내리는 위치면 로봇을 내림
 			}
@@ -46,7 +46,7 @@ public class Main {
 					if (durability[pos] == 0)
 						cnt++;
 				}
-				pos=before;
+				pos = before;
 			}
 
 			if (belt[downIndex] == 1) {
@@ -67,7 +67,6 @@ public class Main {
 
 		}
 		System.out.println(step);
-
 	}
 
 	private static int getBefore(int n) {
