@@ -75,12 +75,7 @@ public class Main {
 					c = 0;
 			}
 			cloud[r][c] = true;
-			q2.add(new int[] { r, c });
-		}
-
-		while (!q2.isEmpty()) {
-			int[] curr = q2.poll();
-			map[curr[0]][curr[1]]++;
+			map[r][c]++;
 		}
 
 		for (int i = 0; i < N; i++) {
