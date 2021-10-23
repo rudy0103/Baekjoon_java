@@ -201,7 +201,6 @@ public class Main {
 	private static boolean check(int rr, int cc) {
 		if (rr >= 0 && rr < N && cc >= 0 && cc < N && visited[rr][cc] == false && map[rr][cc] != -99999)
 			return true;
-		else
-			return false;
+		return false;
 	}
 }

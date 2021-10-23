@@ -1,41 +1,28 @@
-package b21609_상어중학교;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.StringTokenizer;
 
-public class Main {
+public class Seongkeon {
 
-	static int N, M;
-	static int[][] origin, copy;
-	static int[][] visited;
-	static ArrayDeque<int[]> q;
-	static PriorityQueue<int[]> pq;
-	static int[] dr = { -1, 1, 0, 0 };
-	static int[] dc = { 0, 0, -1, 1 };
+	int N, M;
+	int[][] origin, copy;
+	int[][] visited;
+	ArrayDeque<int[]> q;
+	PriorityQueue<int[]> pq;
+	int[] dr = { -1, 1, 0, 0 };
+	int[] dc = { 0, 0, -1, 1 };
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
+	public int shark(int arg1, int arg2, int[][] map) {
 
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
+		this.N = arg1;
+		this.M = arg2;
 
-		origin = new int[N][N];
+		origin = map;
 		copy = new int[N][N];
 		visited = new int[N][N];
 		int score = 0;
-
-		for (int i = 0; i < N; i++) {
-			st = new StringTokenizer(br.readLine());
-			for (int j = 0; j < N; j++)
-				origin[i][j] = Integer.parseInt(st.nextToken());
-		}
 
 		pq = new PriorityQueue<>(new Comparator<int[]>() {
 			@Override
@@ -97,11 +84,11 @@ public class Main {
 			}
 		}
 
-		System.out.println(score);
+		return score;
 
 	}
 
-	private static void bfs(int r, int c, int v, int g) {
+	private void bfs(int r, int c, int v, int g) {
 		q.clear();
 
 		visited[r][c] = g;
@@ -138,8 +125,7 @@ public class Main {
 
 	}
 
-	public static void gravity() {
-
+	public void gravity() {
 
 		for (int c = 0; c < N; c++) {
 			int r = N - 2;
@@ -168,7 +154,7 @@ public class Main {
 		}
 	}
 
-	public static void turnMap() {
+	public void turnMap() {
 		for (int i = 0; i < N; i++)
 			System.arraycopy(origin[i], 0, copy[i], 0, N);
 
