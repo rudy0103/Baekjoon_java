@@ -1,5 +1,8 @@
 package b1865_웜홀;
 
+//플로이드 워샬,, 
+//벨만포드로 다시 한번 풀어보기
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -50,7 +53,7 @@ public class Main {
 				for (int j = 0; j < N; j++) {
 					dp[i][j] = adj[i][j];
 					if (dp[i][j] == 0)
-						dp[i][j] = 12345678;
+						dp[i][j] = Integer.MAX_VALUE;
 				}
 			}
 
