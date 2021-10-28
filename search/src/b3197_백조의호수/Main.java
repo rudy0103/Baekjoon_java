@@ -89,6 +89,7 @@ public class Main {
 			int r = curr[0];
 			int c = curr[1];
 			int day = curr[2];
+			if(r==targetR&&c==targetC) break;
 
 			for (int d = 0; d < 4; d++) {
 				int rr = r + dr[d];
@@ -104,39 +105,4 @@ public class Main {
 		}
 		System.out.println(dp[targetR][targetC]);
 	}
-
-//	private static void backtracking(int startR, int startC, int day) {
-//		if (day > minDay)
-//			return;
-//
-//		if (startR == targetR && startC == targetC) {
-//			if (day < minDay)
-//				minDay = day;
-//			return;
-//		}
-//
-//		for (int d = 0; d < 4; d++) {
-//			int rr = startR + dr[d];
-//			int cc = startC + dc[d];
-//			if (rr >= 0 && rr < R && cc >= 0 && cc < C && visited[rr][cc] == false) {
-//
-//				visited[rr][cc] = true;
-//				backtracking(rr, cc, Math.max(day, map[rr][cc]));
-//				visited[rr][cc] = false;
-//			}
-//		}
-//
-//	}
-
-	private static void printMap(int[][] map) {
-		for (int i = 0; i < R; i++) {
-			for (int j = 0; j < C; j++) {
-				System.out.print(map[i][j] + " ");
-			}
-			System.out.println();
-		}
-
-		System.out.println("@@@@@@@@@@@@@@@@");
-	}
-
 }
