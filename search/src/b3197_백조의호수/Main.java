@@ -12,7 +12,6 @@ public class Main {
 
 	static int R, C, targetR, targetC;
 	static final int ICE = Integer.MAX_VALUE;
-	static boolean[][][] visited;
 	static int[] dr = { -1, 1, 0, 0 };
 	static int[] dc = { 0, 0, -1, 1 };
 	static int[][] map;
@@ -89,8 +88,6 @@ public class Main {
 			int r = curr[0];
 			int c = curr[1];
 			int day = curr[2];
-			if(r==targetR&&c==targetC) break;
-
 			for (int d = 0; d < 4; d++) {
 				int rr = r + dr[d];
 				int cc = c + dc[d];

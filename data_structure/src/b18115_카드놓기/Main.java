@@ -13,18 +13,19 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 
-		Stack<String> stack = new Stack<>();
 		LinkedList<Integer> list = new LinkedList<>();
 
 		int N = Integer.parseInt(br.readLine());
+		String[] arr = new String[N];
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		for (int i = 0; i < N; i++)
-			stack.add(st.nextToken());
+			arr[i]=st.nextToken();
 
 		int cnt = 0;
 		String s = null;
-		while (!stack.isEmpty()) {
-			s = stack.pop();
+		int idx=arr.length;
+		while (idx-->0) {
+			s = arr[idx];
 			if (s.equals("1")) {
 				list.addFirst(++cnt);
 			} else if (s.equals("2")) {
