@@ -17,14 +17,14 @@ public class Main {
 
 			int M = Integer.parseInt(st.nextToken());
 			int N = Integer.parseInt(st.nextToken());
-			int x = Integer.parseInt(st.nextToken());
-			int y = Integer.parseInt(st.nextToken());
+			int x = Integer.parseInt(st.nextToken())-1;
+			int y = Integer.parseInt(st.nextToken())-1;
 
 			boolean flag = false;
 			for (int k = x; k <= M * N; k += M) {
 				if (k % N == y) {
 					flag = true;
-					sb.append((k) + "\n");
+					sb.append((k+1) + "\n");
 					break;
 				}
 			}
