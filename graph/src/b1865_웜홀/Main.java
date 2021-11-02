@@ -53,7 +53,7 @@ public class Main {
 				for (int j = 0; j < N; j++) {
 					dp[i][j] = adj[i][j];
 					if (dp[i][j] == 0)
-						dp[i][j] = Integer.MAX_VALUE;
+						dp[i][j] = 12345678;
 				}
 			}
 

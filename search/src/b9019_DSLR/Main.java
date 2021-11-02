@@ -91,7 +91,6 @@ public class Main {
 						dq.add(new DSLR(tmp, one.op + "R"));
 					}
 				}
-
 			}
 			Arrays.fill(visited, false);
 
