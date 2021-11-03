@@ -147,7 +147,6 @@ public class Main {
 		map[sharkR][sharkC] = 9;
 
 		Shark shark = new Shark(sharkR, sharkC);
-		int s=1;
 		while (S-- > 0) {
 			// 1. 물고기 복사,2. 물고기 이동
 
@@ -158,14 +157,8 @@ public class Main {
 			// 3. 상어이동
 			sharkDir.clear();
 			dfs(0, 0, shark.r, shark.c);
-			if(s==6||s==7||s==8) {
-				printMap(fishCnt);
-				System.out.println(Arrays.toString(sharkDir.peek()));
-			}
 			shark.move(sharkDir.poll());
-			if(s==6||s==7||s==8) {
-				System.out.println((shark.r)+" "+(shark.c));
-			}
+
 			int size = fish.size();
 
 			while (size-- > 0) {
@@ -175,7 +168,6 @@ public class Main {
 				else
 					fish.add(f);
 			}
-//			System.out.println(shark.r+" "+shark.c);
 
 			// 4. 냄새 사라짐
 
@@ -192,21 +184,10 @@ public class Main {
 				fishCnt[f.r][f.c]++;
 				fish.add(f);
 			}
-			s++;
 		}
 
 		System.out.println(fish.size());
 
-	}
-
-	private static void printMap(int[][] fishCnt2) {
-		for(int i=0;i<4;i++) {
-			for(int j=0;j<4;j++) {
-				System.out.print(fishCnt2[i][j]+" ");
-			}
-			System.out.println();
-		}
-		System.out.println("@@@@@@@@@@@@@@@@@@@");
 	}
 
 	private static void dfs(int d, int cnt, int r, int c) {
