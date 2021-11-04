@@ -48,9 +48,7 @@ public class Main {
 				}
 			}
 		}
-
 		System.out.println(max);
-
 	}
 
 	private static int getCnt(int n, char[][] map, int rc) {
