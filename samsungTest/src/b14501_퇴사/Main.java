@@ -17,8 +17,8 @@ public class Main {
 		
 		for(int i=1;i<=N;i++) {
 			st=new StringTokenizer(br.readLine()," ");
-			consulting[i][0]=Integer.parseInt(st.nextToken());
-			consulting[i][1]=Integer.parseInt(st.nextToken());
+			consulting[i][0]=Integer.parseInt(st.nextToken());// 상담 기간
+			consulting[i][1]=Integer.parseInt(st.nextToken());// 상담 금액
 		}
 		
 		for(int i=1;i<=N;i++) {
@@ -28,6 +28,7 @@ public class Main {
 				}
 			}
 		}
+		
 		int max=0;
 		for(int i=1;i<=N;i++) max=Math.max(max, dp[i]);
 		System.out.println(max);
