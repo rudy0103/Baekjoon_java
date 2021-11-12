@@ -28,10 +28,7 @@ public class Main {
 			stack[i] = new Stack<int[]>();
 
 		for (int i = 1; i <= R; i++) {
-			char[] charArr = br.readLine().toCharArray();
-			for (int j = 1; j <= C; j++) {
-				map[i][j] = charArr[j - 1];
-			}
+			map[i] = br.readLine().toCharArray();
 		}
 		int N = Integer.parseInt(br.readLine());
 		for (int i = 0; i < N; i++) {
@@ -60,8 +57,7 @@ public class Main {
 			check(stack[col].peek()[0], stack[col].peek()[1], col);
 			return;
 		}
-
-		check(1, col, col);
+		check(0, col, col);
 
 	}
 
@@ -70,26 +66,28 @@ public class Main {
 		int c = col;
 
 		while (r <= R) {
-			if (r == R || map[r + 1][c] == 'X') {
+			if (r + 1 > R || map[r + 1][c] == 'X') {
 				map[r][c] = 'O';
 				break;
 			} else {
 				if (map[r + 1][c] == '.') { // 돌이 내려갈 수 있다.
 					stack[s].add(new int[] { r + 1, c });
+					r += 1;
 				} else { // 한칸 밑에 돌이 있다.
 					// 왼쪽
 					if (c - 1 >= 1 &&map[r + 1][c - 1] == '.' && map[r][c - 1] == '.') {
 						stack[s].add(new int[] { r + 1, c - 1 });
+						r += 1;
 						c -= 1;
 					} else if (c + 1 <= C  && map[r + 1][c + 1] == '.'&& map[r][c + 1] == '.') {
 						stack[s].add(new int[] { r + 1, c + 1 });
+						r += 1;
 						c += 1;
 					} else {
 						map[r][c] = 'O';
 						break;
 					}
 				}
-				r ++;
 			}
 		}
 	}
