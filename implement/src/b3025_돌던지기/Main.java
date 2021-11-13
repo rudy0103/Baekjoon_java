@@ -20,11 +20,11 @@ public class Main {
 		R = Integer.parseInt(inp[0]);
 		C = Integer.parseInt(inp[1]);
 
-		map = new char[R + 1][C + 1];
+		map = new char[R + 1][C];
 
-		stack = new Stack[C + 1];
+		stack = new Stack[C];
 
-		for (int i = 1; i <= C; i++)
+		for (int i = 0; i < C; i++)
 			stack[i] = new Stack<int[]>();
 
 		for (int i = 1; i <= R; i++) {
@@ -33,11 +33,11 @@ public class Main {
 		int N = Integer.parseInt(br.readLine());
 		for (int i = 0; i < N; i++) {
 			int c = Integer.parseInt(br.readLine());
-			throwStone(c);
+			throwStone(c-1);
 		}
 
 		for (int r = 1; r <= R; r++) {
-			for (int c = 1; c <= C; c++) {
+			for (int c = 0; c < C; c++) {
 				sb.append(map[r][c]);
 			}
 			sb.append("\n");
@@ -68,23 +68,28 @@ public class Main {
 		while (r <= R) {
 			if (r + 1 > R || map[r + 1][c] == 'X') {
 				map[r][c] = 'O';
+				stack[s].pop();
 				break;
 			} else {
 				if (map[r + 1][c] == '.') { // 돌이 내려갈 수 있다.
 					stack[s].add(new int[] { r + 1, c });
 					r += 1;
+					continue;
 				} else { // 한칸 밑에 돌이 있다.
 					// 왼쪽
-					if (c - 1 >= 1 &&map[r + 1][c - 1] == '.' && map[r][c - 1] == '.') {
+					if (c - 1 >= 0 && map[r + 1][c - 1] == '.' && map[r][c - 1] == '.') {
 						stack[s].add(new int[] { r + 1, c - 1 });
 						r += 1;
 						c -= 1;
-					} else if (c + 1 <= C  && map[r + 1][c + 1] == '.'&& map[r][c + 1] == '.') {
+						continue;
+					} else if (c + 1 < C && map[r + 1][c + 1] == '.' && map[r][c + 1] == '.') {
 						stack[s].add(new int[] { r + 1, c + 1 });
 						r += 1;
 						c += 1;
+						continue;
 					} else {
 						map[r][c] = 'O';
+						stack[s].pop();
 						break;
 					}
 				}
