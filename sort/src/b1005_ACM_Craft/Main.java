@@ -43,13 +43,13 @@ public class Main {
 			}
 
 			int target = Integer.parseInt(br.readLine());
-			totologicalSort(target, graph, cnt, dp, cost);
+			topologicalSort(target, graph, cnt, dp, cost);
 			sb.append(dp[target] + "\n");
 		}
 		System.out.println(sb.toString());
 	}
 
-	private static void totologicalSort(int target, LinkedList<LinkedList<Integer>> graph, int[] cnt, int[] dp,
+	private static void topologicalSort(int target, LinkedList<LinkedList<Integer>> graph, int[] cnt, int[] dp,
 			int[] cost) {
 		ArrayDeque<Integer> q = new ArrayDeque<>();
 		int N = cnt.length - 1;
