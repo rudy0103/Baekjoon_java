@@ -22,42 +22,43 @@ public class Main {
 			System.out.println(0);
 	}
 
-	private static boolean kmp(String t, String p) {
+	private static boolean kmp(String text, String pattern) {
 		// 찾으면 true
 
 		// 부분 일치 테이블 배열 만들기
-		//t가 본문 p가 찾고자 하는 문자열
-		int[] pi = new int[p.length()];
-		int tLen = t.length();
-		int pLen = p.length();
-		for (int i = 1, j = 0; i < pLen; i++) {
-			while (j > 0 && p.charAt(i) != p.charAt(j)) {
-				j = pi[j - 1];
-			}
-			if (p.charAt(i) == p.charAt(j))
-				pi[i] = ++j;
-		}
+		// t가 본문 p가 찾고자 하는 문자열
+		int[] table = makeTable(pattern);
 
-		for (int i = 0, j = 0; i < tLen; i++) {
-			if (t.charAt(i) == p.charAt(j)) {
-				j++;
-				if (j == pLen) {
-					j = pi[j - 1];
+		for (int i = 0, j = 0; i < text.length(); i++) {
+			while (j > 0 && text.charAt(i) != pattern.charAt(j)) {
+				j = table[j - 1];
+			}
+
+			if (text.charAt(i) == pattern.charAt(j)) {
+				if (j == pattern.length() - 1) {
 					return true;
-				}
-			} else {
-				while (j - 1 >= 0) {
-					j = pi[j - 1];
-					if (t.charAt(i) == p.charAt(j)) {
-						j++;
-						break;
-					}
+				} else {
+					j++;
 				}
 			}
 		}
 
 		// 못찾으면 false
 		return false;
+	}
+
+	private static int[] makeTable(String pattern) {
+		int[] table = new int[pattern.length()];
+
+		for (int i = 1, j = 0; i < pattern.length(); i++) {
+			while (j > 0 && pattern.charAt(i) != pattern.charAt(j)) {
+				j = table[j - 1];
+			}
+			if (pattern.charAt(i) == pattern.charAt(j))
+				table[i] = ++j;
+		}
+
+		return table;
 	}
 
 }
