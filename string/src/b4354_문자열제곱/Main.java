@@ -3,6 +3,7 @@ package b4354_문자열제곱;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Main {
 
