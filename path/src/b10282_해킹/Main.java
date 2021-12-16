@@ -87,7 +87,6 @@ public class Main {
 
 		while (!pq.isEmpty()) {
 			int[] curr = pq.poll();
-
 			for (Edge e = graph[curr[0]]; e != null; e = e.link) {
 				int next = e.to;
 				int cost = e.cost;
