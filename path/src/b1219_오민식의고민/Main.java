@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -11,9 +12,9 @@ public class Main {
 	static class Edge {
 		int from;
 		int to;
-		int weight;
+		long weight;
 
-		public Edge(int from, int to, int weight) {
+		public Edge(int from, int to, long weight) {
 			super();
 			this.from = from;
 			this.to = to;
@@ -36,66 +37,74 @@ public class Main {
 			st = new StringTokenizer(br.readLine(), " ");
 			int from = Integer.parseInt(st.nextToken());
 			int to = Integer.parseInt(st.nextToken());
-			int weight = Integer.parseInt(st.nextToken());
+			long weight = Long.parseLong(st.nextToken());
 			edgeArray[i] = new Edge(from, to, weight);
 		}
 		st = new StringTokenizer(br.readLine(), " ");
-		int[] money = new int[N];
-		int[] cost = new int[N];
+		long[] money = new long[N];
+		long[] cost = new long[N];
 		for (int i = 0; i < N; i++)
 			money[i] = Integer.parseInt(st.nextToken());
 
-		boolean haveCycle;
-		haveCycle = bellmanFord(S, E, edgeArray, money, cost);
-
-		if (cost[E] == Integer.MAX_VALUE)
+		LinkedList<Integer> list = bellmanFord(S, E, edgeArray, money, cost);
+		
+		if(list==null) {
 			System.out.println("gg");
-		else if (haveCycle == true) {
-			System.out.println("Gee");
-		} else {
+		}else if(list.size()==0){
 			System.out.println(-cost[E]);
+		}else {
+			boolean canGo=false;
+			for(int start: list) {
+				if(bellmanFord(start, E, edgeArray, money, new long[N])!=null) {
+					canGo=true;
+					break;
+				}
+			}
+			if(canGo) System.out.println("Gee");
+			else System.out.println(-cost[E]);
 		}
 
 	}
 
-	private static boolean bellmanFord(int s, int e, Edge[] edgeArray, int[] money, int[] cost) {
+	private static LinkedList<Integer> bellmanFord(int s, int e, Edge[] edgeArray, long[] money, long[] cost) {
 
 		int N = money.length;
-		Arrays.fill(cost, Integer.MAX_VALUE);
+		Arrays.fill(cost, Long.MAX_VALUE);
 		cost[s] = -money[s];
 
-		for (int i = 0; i < N - 1; i++) {
-			boolean isUpdated = false;
+		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < edgeArray.length; j++) {
 				Edge edge = edgeArray[j];
 				int from = edge.from;
 				int to = edge.to;
-				int weight = edge.weight;
-				if (cost[from] == Integer.MAX_VALUE)
+				long weight = edge.weight;
+				if (cost[from] == Long.MAX_VALUE)
 					continue;
 
 				if (cost[to] > cost[from] + weight - money[to]) {
 					cost[to] = cost[from] + weight - money[to];
-					isUpdated = true;
 				}
 			}
-			if (isUpdated == false)
-				break;
 		}
+
+		LinkedList<Integer> list = new LinkedList<>();
 
 		for (int j = 0; j < edgeArray.length; j++) {
 			Edge edge = edgeArray[j];
 			int from = edge.from;
 			int to = edge.to;
-			int weight = edge.weight;
+			long weight = edge.weight;
+			if (cost[from] == Long.MAX_VALUE)
+				continue;
 
 			if (cost[to] > cost[from] + weight - money[to]) {
 				cost[to] = cost[from] + weight - money[to];
-				return true;
+				list.add(to);
 			}
 		}
-		return false;
+
+		if(cost[e]==Long.MAX_VALUE) return null;
+		return list;
 
 	}
-
 }
