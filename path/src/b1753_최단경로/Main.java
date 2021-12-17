@@ -33,9 +33,12 @@ public class Main {
 			}
 		});
 		q.add(new int[] {start,cost[start]});
+		boolean visited[]=new boolean[cost.length];
 		
 		while(!q.isEmpty()) {
 			int []current=q.poll();
+			if(visited[current[0]]) continue;
+			visited[current[0]]=true;
 			
 			for(Edge curEdge=graph[current[0]];curEdge!=null;curEdge=curEdge.link) {
 				int next=curEdge.vertex;
