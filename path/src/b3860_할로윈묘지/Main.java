@@ -44,7 +44,7 @@ public class Main {
 			for (int i = 0; i < G; i++) {
 				st = new StringTokenizer(br.readLine());
 				int c = Integer.parseInt(st.nextToken());
-				int r = H - Integer.parseInt(st.nextToken()) - 1;
+				int r = H-Integer.parseInt(st.nextToken())-1;
 				int node = transToNode(r, c);
 				nodes[node][0] = -1;
 			}
@@ -55,9 +55,9 @@ public class Main {
 			for (int i = 0; i < E; i++) {
 				st = new StringTokenizer(br.readLine(), " ");
 				int c1 = Integer.parseInt(st.nextToken());
-				int r1 = H - Integer.parseInt(st.nextToken()) - 1;
+				int r1 = H-Integer.parseInt(st.nextToken())-1;
 				int c2 = Integer.parseInt(st.nextToken());
-				int r2 = H - Integer.parseInt(st.nextToken()) - 1;
+				int r2 = H-Integer.parseInt(st.nextToken())-1;
 				int weight = Integer.parseInt(st.nextToken());
 
 				int in = transToNode(r1, c1);
@@ -93,8 +93,8 @@ public class Main {
 				}
 			}
 
-			boolean haveCycle = bellmanFord(start, end);
-			if (haveCycle) {
+			boolean isCycled = bellmanFord(start, end);
+			if (isCycled) {
 				sb.append("Never\n");
 			} else {
 				if (cost[end] == Long.MAX_VALUE) {
@@ -102,13 +102,12 @@ public class Main {
 				} else
 					sb.append(cost[end] + "\n");
 			}
-
-			/////// 새로운 테케
+			///////////새로운 테케
 			st = new StringTokenizer(br.readLine());
 			W = Integer.parseInt(st.nextToken());
 			H = Integer.parseInt(st.nextToken());
 		}
-		///////////// 출력
+		///////// 출력
 		System.out.println(sb.toString());
 	}
 
@@ -116,8 +115,8 @@ public class Main {
 
 		Arrays.fill(cost, Long.MAX_VALUE);
 		cost[start] = 0;
-		int len = H * W;
-		for (int i = 0; i < len - 1; i++) {
+		int len = H * W +1;
+		for (int i = 0; i < len-1 ; i++) {
 			boolean isUpdated = false;
 
 			for (int j = 0; j < idx; j++) {
@@ -125,6 +124,7 @@ public class Main {
 				Edge e = edgeList[j];
 				int from = e.from;
 				int to = e.to;
+				if(from==end) continue;
 
 				if (cost[from] == Long.MAX_VALUE)
 					continue;
@@ -149,7 +149,7 @@ public class Main {
 				break;
 		}
 
-		boolean haveCycle = false;
+	
 
 		for (int j = 0; j < idx; j++) {
 
@@ -157,9 +157,10 @@ public class Main {
 			int from = e.from;
 			int to = e.to;
 
+			if(from==end) continue;
 			if (cost[from] == Long.MAX_VALUE)
 				continue;
-
+			
 			if (nodes[from][0] == 0) {// 일반 잔디
 
 				if (cost[to] > cost[from] + 1) {
@@ -176,13 +177,12 @@ public class Main {
 			}
 
 		}
-		if (haveCycle == true) {
-			return true;
-		}
+
 		return false;
 	}
 
 	private static int transToNode(int r, int c) {
+
 		return r * W + c + 1;
 	}
 
