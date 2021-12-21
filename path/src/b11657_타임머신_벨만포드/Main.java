@@ -54,7 +54,6 @@ public class Main {
 	}
 
 	private static boolean bellmanFord(int start, long[] pathCost, Edge[] edgeList) {
-		boolean res = true;
 
 		Arrays.fill(pathCost, Integer.MAX_VALUE);
 
@@ -96,7 +95,7 @@ public class Main {
 		}
 
 
-		return res;
+		return true;
 	}
 
 }
