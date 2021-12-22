@@ -21,10 +21,5 @@ public class Main {
 			if (pattern.charAt(i) == pattern.charAt(j))
 				table[i] = ++j;
 		}
-		int max=0;
-		for(int i=0;i<table.length;i++) {
-			if(table[i]>max) max=table[i];
-		}
-
 		System.out.println(pattern.length()-table[L-1]);
 	}}
