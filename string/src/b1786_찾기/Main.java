@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -28,8 +29,9 @@ public class Main {
 	        if(p.charAt(i) == p.charAt(j)) pi[i] = ++j;
 	    }
 		
-		
-		for(int i=0,j=0;i<tLen;i++) {
+		System.out.println(Arrays.toString(pi));
+		int j=0;
+		for(int i=0;i<tLen;i++) {
 			if(t.charAt(i)==p.charAt(j)) {
 				j++;
 				if(j==pLen) {

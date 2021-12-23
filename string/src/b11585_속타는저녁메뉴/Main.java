@@ -44,6 +44,7 @@ public class Main {
 					j = pi[j - 1];
 					if (i - pLen + 2 <= pLen)
 						cnt++;
+					else break;
 				}
 			} else {
 				while (j - 1 >= 0) {
