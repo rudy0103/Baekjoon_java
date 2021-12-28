@@ -21,5 +21,6 @@ public class Main {
 			if (pattern.charAt(i) == pattern.charAt(j))
 				table[i] = ++j;
 		}
+		System.out.println(Arrays.toString(table));
 		System.out.println(pattern.length()-table[L-1]);
 	}}
