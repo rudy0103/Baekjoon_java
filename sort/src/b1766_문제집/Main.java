@@ -40,14 +40,11 @@ public class Main {
 			cnt[to]++;
 		}
 
-		List<Integer> res = topological(graph,cnt, N, M);
-		for(int n:res) {
-			sb.append(n).append(" ");
-		}
+		topological(graph,cnt, N, M,sb);
 		System.out.println(sb.toString());
 	}
 
-	private static List<Integer> topological(Edge[] graph,int[] cnt, int n, int m) {
+	private static void topological(Edge[] graph,int[] cnt, int n, int m,StringBuilder sb) {
 		List<Integer> list = new LinkedList<Integer>();
 		
 		PriorityQueue<Integer> pq = new PriorityQueue<>();
@@ -62,7 +59,7 @@ public class Main {
 		while(!pq.isEmpty()) {
 			
 			int curr=pq.poll();
-			list.add(curr);
+			sb.append(curr).append(" ");
 			
 			for(Edge e=graph[curr];e!=null;e=e.link) {
 				int next=e.to;
@@ -73,11 +70,5 @@ public class Main {
 			}
 		}
 		
-		
-		
-		
-		
-		
-		return list;
 	}
 }
