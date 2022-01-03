@@ -3,8 +3,6 @@ package b1766_문제집;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
@@ -45,7 +43,6 @@ public class Main {
 	}
 
 	private static void topological(Edge[] graph,int[] cnt, int n, int m,StringBuilder sb) {
-		List<Integer> list = new LinkedList<Integer>();
 		
 		PriorityQueue<Integer> pq = new PriorityQueue<>();
 		
