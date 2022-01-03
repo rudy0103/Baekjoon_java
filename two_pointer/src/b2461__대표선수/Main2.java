@@ -40,8 +40,6 @@ public class Main2 {
 				return o1[0]-o2[0];
 			}
 
-
-
 		});
 
 		int pos = getFirstPos(players, team, N, M);
