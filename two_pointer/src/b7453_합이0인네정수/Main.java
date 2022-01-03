@@ -16,12 +16,12 @@ public class Main {
 			st = new StringTokenizer(br.readLine(), " ");
 			arr[idx++] = Integer.parseInt(st.nextToken());
 		}
-		
+
 		Arrays.sort(arr);
-		
-		
-		
+
+		for (int j = 0; j < 4; j++) {
+			arr[idx++] = Integer.parseInt(st.nextToken());
+		}
 
 	}
-
 }
