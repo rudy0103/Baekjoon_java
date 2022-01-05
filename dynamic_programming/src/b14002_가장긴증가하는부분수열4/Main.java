@@ -34,17 +34,18 @@ public class Main {
 		
 		int size=0;
 		for (int i = 0; i < n; i++) {
-			int tmp=Arrays.binarySearch(dp, 0,size,arr[i]);
-			if(tmp>=0) {
-				q.add(new int[] {arr[i],tmp});
+			int idx=Arrays.binarySearch(dp, 0,size,arr[i]);
+			
+			if(idx>=0) {
+				q.add(new int[] {arr[i],idx});
 				continue;
 			}
 			
-			tmp=Math.abs(tmp)-1;
-			dp[tmp]=arr[i];
-			q.add(new int[] {arr[i],tmp});
+			idx=Math.abs(idx)-1;
+			dp[idx]=arr[i];
+			q.add(new int[] {arr[i],idx});
 			
-			if(tmp==size)
+			if(idx==size)
 				size++;
 		}
 		

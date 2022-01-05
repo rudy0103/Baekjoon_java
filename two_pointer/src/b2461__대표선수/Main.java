@@ -3,12 +3,11 @@ package b2461__대표선수;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.StringTokenizer;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 
 public class Main {
 
@@ -29,7 +28,7 @@ public class Main {
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
 
-		Player[] players = new Player[N * M];
+		List<Player> players=new ArrayList<>();
 		int[] team = new int[N];
 
 		int k = 0;
@@ -37,46 +36,47 @@ public class Main {
 			st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < M; j++) {
 				int power = Integer.parseInt(st.nextToken());
-				players[k++] = new Player(power, i);
+				players.add(new Player(power, i));
 			}
 		}
 
-		Arrays.sort(players, new Comparator<Player>() {
+		Collections.sort(players, new Comparator<Player>() {
 			@Override
 			public int compare(Player o1, Player o2) {
 				return o1.power - o2.power;
 			}
 		});
+		
 
 		int pos = getFirstPos(players, team, N, M);
 
 		int len = N * M;
 		int result = Integer.MAX_VALUE;
 
-		for (int i = 0; i < len - M; i++) {
-			Player min = players[i];
-			Player max = players[pos];
+		for (int i = 0; i < len - N; i++) {
+			Player min = players.get(i);
+			Player max = players.get(pos);
 
 			result = Math.min(result, max.power - min.power);
 			team[min.team]--;
 
 			while (pos < len-1 && team[min.team] == 0) {
-				team[players[++pos].team]++;
+				team[players.get(++pos).team]++;
 			}
 			if(team[min.team]==0) break;
 		}
 		System.out.println(result);
 	}
 
-	private static int getFirstPos(Player[] players, int[] team, int n, int m) {
+	private static int getFirstPos(List<Player> players, int[] team, int n, int m) {
 
 		int cnt = 1;
 		int pos = 1;
-		Player min = players[0];
+		Player min = players.get(0);
 		team[min.team]++;
 		int len = n * m;
 		while (pos < len) {
-			Player next = players[pos];
+			Player next = players.get(pos);
 			if (team[next.team] == 0) {
 				cnt++;
 			}

@@ -47,7 +47,7 @@ public class Main2 {
 		int len = N * M;
 		int result = Integer.MAX_VALUE;
 
-		for (int i = 0; i < len - M; i++) {
+		for (int i = 0; i < len - N; i++) {
 			int[] min = players[i];
 			int[] max = players[pos];
 
