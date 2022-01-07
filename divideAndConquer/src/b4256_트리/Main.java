@@ -9,6 +9,8 @@ public class Main {
 
 	static int[] preorder = new int[1001];
 	static int[] inorder = new int[1001];
+	static int[] inOrderIdx;
+	static int[] preOrderIdx;
 
 	static int N;
 
@@ -20,15 +22,19 @@ public class Main {
 		for (int tc = 0; tc < T; tc++) {
 			StringBuilder post = new StringBuilder();
 			N = Integer.parseInt(br.readLine());
+			inOrderIdx= new int[N+1];
+			preOrderIdx = new int[N+1];
 
 			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 			for (int i = 1; i <= N; i++) {
 				preorder[i] = Integer.parseInt(st.nextToken());
+				preOrderIdx[preorder[i]]=i;
 			}
 
 			st = new StringTokenizer(br.readLine(), " ");
 			for (int i = 1; i <= N; i++) {
 				inorder[i] = Integer.parseInt(st.nextToken());
+				inOrderIdx[inorder[i]]=i;
 			}
 			int root = preorder[1];
 
@@ -43,32 +49,24 @@ public class Main {
 
 	private static void makeTree(int root, int leftIdx, int rightIdx, StringBuilder sb) {
 
-		int rootIdx = getIdx(inorder, root);
+		int rootIdx = inOrderIdx[root];
 
-		int rootIdxInPre = getIdx(preorder, root);
+		int rootIdxInPre = preOrderIdx[root];
 		int leftCnt = rootIdx - leftIdx - 1;
 
 		if (rootIdxInPre + 1 <= N) {
-			int idx = getIdx(inorder, preorder[rootIdxInPre + 1]);
+			int idx=inOrderIdx[preorder[rootIdxInPre+1]];
 			if (idx < rootIdx && idx > leftIdx) {
 				makeTree(preorder[rootIdxInPre + 1], leftIdx, rootIdx, sb);
 			}
 		}
 
 		if (rootIdxInPre + leftCnt + 1 <= N) {
-			int idx = getIdx(inorder, preorder[rootIdxInPre + leftCnt + 1]);
+			int idx=inOrderIdx[preorder[rootIdxInPre + leftCnt + 1]];
 			if (idx < rightIdx && idx > rootIdx) {
 				makeTree(preorder[rootIdxInPre + leftCnt + 1], rootIdx, rightIdx, sb);
 			}
 		}
 		sb.append(root).append(" ");
-	}
-
-	private static int getIdx(int[] arr, int key) {
-		for (int i = 1; i <= N; i++) {
-			if (arr[i] == key)
-				return i;
-		}
-		return 0;
 	}
 }
