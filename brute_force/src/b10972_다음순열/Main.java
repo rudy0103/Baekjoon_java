@@ -29,28 +29,45 @@ public class Main {
 		}
 	}
 
-	private static boolean nextPermutation(int N, int[] numbers) {
-		int i = N - 1;
-		while (i > 0 && numbers[i - 1] >= numbers[i])
+	// 다음 큰 순열이 있으면 return true else return false;
+	private static boolean nextPermutation(int len,int[] arr) {
+
+		int i = len-1;
+
+		
+		// step1. 뒤쪽부터 접근하면서 arr[i-1]이 arr[i]보다 크거나 같으면 i를 줄여간다.
+		while (i > 0 && arr[i - 1] >= arr[i]) {
 			--i;
-		if (i == 0)
-			return false;
-		int j = N - 1;
-		while (numbers[i - 1] >= numbers[j])
-			--j;
-		swap(i - 1, j, numbers);
-		j = N - 1;
-		while (i < j) {
-			swap(i++, j--, numbers);
+		}
+		
+		//내림차순으로 순열이 정렬되어 있다는 의미--> 다음 순열은 없다.
+		if(i==0) return false;
+		
+		//step2. arr[i-1]값과 교환할 큰 값 찾기
+		int j=len-1;
+		
+		
+		// i번 쨰 값은 arr[i-1]보다 크다 따라서 j는 무조건 범위 안에서 멈추게된다.
+		while(arr[i-1]>=arr[j]) j--;
+		
+		
+		// step 3, i-1위치값과 j위치 값 교환
+		swap(arr,i-1,j);
+		
+		// i부터 맨 뒤까지 오름차순 정렬
+		
+		int k=len-1;
+		
+		while(i<k) {
+			swap(arr, i++, k--);
 		}
 		return true;
-
 	}
-
-	private static void swap(int i, int j, int[] numbers) {
-		int temp = numbers[i];
-		numbers[i] = numbers[j];
-		numbers[j] = temp;
+	
+	static void swap(int[] arr, int i, int j) {
+		int temp=arr[i];
+		arr[i]=arr[j];
+		arr[j]=temp;
 	}
 
 }
