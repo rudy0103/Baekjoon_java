@@ -19,10 +19,6 @@ public class Main {
 		}
 		num/=10;
 		
-//		System.out.println(num);
-//		System.out.println(d);
-		
-		
 		while(d>0) {
 			int gap=N-num+1;
 			cnt+=d*gap;
@@ -30,11 +26,7 @@ public class Main {
 			d--;
 			num/=10;
 		}
-		
-		
-		
+			
 		System.out.println(cnt);
-		
 	}
-
 }
