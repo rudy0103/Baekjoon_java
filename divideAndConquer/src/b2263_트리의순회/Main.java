@@ -46,7 +46,7 @@ public class Main {
 		int rootIdxInInOrder =inOrderIdx[root];
 		int rootIdxInPostOrder = postOrderIdx[root];
 
-		int rightCnt = rightIdx - rootIdxInInOrder - 1;
+		int rightCnt = rightIdx - rootIdxInInOrder - 1;// 
 
 		int left = postOrder[rootIdxInPostOrder - rightCnt - 1];
 		int leftChildIdx = inOrderIdx[left];

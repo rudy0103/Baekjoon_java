@@ -1,4 +1,4 @@
-package b11727;
+package b11727_2n타일링2;
 
 import java.util.Scanner;
 

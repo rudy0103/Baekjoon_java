@@ -1,4 +1,4 @@
-package b2096;
+package b2096_내려가기;
 
 import java.io.BufferedReader;
 import java.io.IOException;
