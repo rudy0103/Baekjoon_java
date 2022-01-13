@@ -24,7 +24,6 @@ public class Main {
 			}else {
 				t.setLength(t.length()-1);
 				t.reverse();
-				
 			}
 			l--;	
 		}
