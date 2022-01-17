@@ -9,11 +9,13 @@ import java.util.StringTokenizer;
 public class Main {
 
 	static long cnt=0;
+	static int[] newArr;
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N=Integer.parseInt(br.readLine());
 		int []arr=new int[N];
+		newArr=new int[N];
 		StringTokenizer st = new StringTokenizer(br.readLine()," ");
 		
 		for(int i=0;i<N;i++) arr[i]=Integer.parseInt(st.nextToken());
@@ -37,15 +39,13 @@ public class Main {
 		if(arr[mid]<=arr[mid+1]) return;
 		
 		int leftLen= mid-left+1;
-		int rightLen=right-mid;
 		
 		int leftIdx=left;
 		int rightIdx=mid+1;
 		
-		int []newArr=new int[leftLen+rightLen];
 		int idx=0;
 		
-		while(idx<newArr.length&&leftIdx<=mid&&rightIdx<=right) {
+		while(leftIdx<=mid&&rightIdx<=right) {
 			
 			if(arr[leftIdx]<=arr[rightIdx]) {
 				newArr[idx++]=arr[leftIdx++];
@@ -65,7 +65,6 @@ public class Main {
 				newArr[idx++]=arr[leftIdx++];
 			}
 		}
-		
 		
 		idx=0;
 		for(int i=left;i<=right;i++) {
