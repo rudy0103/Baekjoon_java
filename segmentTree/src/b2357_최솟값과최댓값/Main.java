@@ -33,11 +33,7 @@ public class Main {
 			int[] res=query(tree,left,right,1,0,N-1);
 			sb.append(res[1]).append(" ").append(res[0]).append("\n");
 		}
-		
-		
 		System.out.println(sb.toString());
-		
-		
 	}
 
 	private static int[] query(int[][] tree, int left, int right, int node, int nodeLeft, int nodeRight) {
