@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+import sun.reflect.generics.tree.Tree;
+
 public class Main {
 
 	public static void main(String[] args) throws IOException {
@@ -88,7 +90,7 @@ public class Main {
 	private static int update(int[] segmentTree, int value, int index, int node, int nodeLeft, int nodeRight) {
 
 		if (index < nodeLeft || index > nodeRight)
-			return -9;
+			return segmentTree[node];
 
 		if (nodeLeft == nodeRight) {
 			return segmentTree[node]=value;
@@ -97,12 +99,8 @@ public class Main {
 
 		int mid = (nodeLeft + nodeRight) / 2;
 		int leftVal = update(segmentTree, value, index, node * 2, nodeLeft, mid);
-		if(leftVal==-9) leftVal=segmentTree[node*2];
-		
 		int rightVal = update(segmentTree, value, index, node * 2 + 1, mid + 1, nodeRight);
-		if(rightVal==-9) rightVal=segmentTree[node*2+1];
 
-	
 		return segmentTree[node] = (leftVal * rightVal);
 	}
 
