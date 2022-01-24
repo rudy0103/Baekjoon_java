@@ -27,20 +27,8 @@ public class Main {
 			this.link = link;
 			this.flag = flag;
 		}
-		
-		
-		
 	}
 	
-	static class Point{
-		int from;
-		Edge edge;
-		public Point(int from, Edge edge) {
-			super();
-			this.from = from;
-			this.edge = edge;
-		}
-	}
 	static int N;
 
 	public static void main(String[] args) throws IOException {
@@ -115,8 +103,6 @@ public class Main {
 			minPath[i]=new LinkedList<>();
 		}
 		
-		
-		
 		while(!pq.isEmpty()) {
 			
 			int[] curr=pq.poll();
@@ -136,8 +122,7 @@ public class Main {
 					pq.add(new int[] {e.to,newCost});
 				}else if(newCost==cost[e.to]) {
 					minPath[e.to].add(e);
-				}
-				
+				}		
 			}
 		}
 		if (type) {
