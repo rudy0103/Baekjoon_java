@@ -7,20 +7,14 @@ public class Main {
   
 	public static void main(String [] args) throws IOException{
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int tmp=0;
 		
-		StringTokenizer st =new StringTokenizer(br.readLine());
-		char[] A=st.nextToken().toCharArray();
-		char[] B=st.nextToken().toCharArray();
-		long res=0;
-		
-		for(int i=0;i<A.length;i++) {
-			int tmp=A[i]-'0';
-			for(int j=0;j<B.length;j++) {
-				res+=tmp*(B[j]-'0');
-			}
-		}
-		System.out.println(res);
+		System.out.println(tmp=(tmp|1<<0));
+		System.out.println(tmp=(tmp|1<<1));
+		System.out.println(tmp=(tmp|1<<2));
+		System.out.println(tmp=(tmp|1<<2));
+		System.out.println(tmp=(tmp|1<<2));
+		System.out.println(tmp);
 		
 	}
 
