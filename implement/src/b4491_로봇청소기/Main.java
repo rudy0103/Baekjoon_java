@@ -52,7 +52,6 @@ public class Main {
 				int[] curr = q.poll();
 				if (curr[4] == cnt) {
 					min = curr[3];
-					System.out.println(Arrays.toString(curr));
 					break;
 				}
 
