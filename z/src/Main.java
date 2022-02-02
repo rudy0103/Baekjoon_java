@@ -5,78 +5,90 @@ import java.util.StringTokenizer;
 
 public class Main {
 
+	static int minCnt = -1;
+
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = null;
-		StringBuilder sb = new StringBuilder();
-		int N = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
 
-		int[] tree = new int[4000004];
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
+
+		boolean[][] A = new boolean[N][M];
+		boolean[][] B = new boolean[N][M];
+
 		for (int i = 0; i < N; i++) {
-			st = new StringTokenizer(br.readLine(), " ");
-
-			String A = st.nextToken();
-			if (A.charAt(0) == '1') {// B는 꺼낼 사탕의 순위
-				int B = Integer.parseInt(st.nextToken());
-				int tmp = find(tree,B,1,1,1000000,0);
-				sb.append(tmp+"\n");
-				update(tree, tmp, -1, 1, 1, 1000000);
-
-			} else {//
-
-				int B = Integer.parseInt(st.nextToken());
-				int C = Integer.parseInt(st.nextToken());
-
-				update(tree, B, C, 1, 1, 1000000);
+			char[] inp = br.readLine().toCharArray();
+			for (int j = 0; j < M; j++) {
+				if (inp[j] == '1')
+					A[i][j] = true;
 			}
-
-		}
-		System.out.println(sb.toString());
-	}
-
-
-
-	private static int find(int[] tree, int b, int node, int left, int right, int cnt) {
-
-		
-		if(left==right) return left; //더이상 쪼개질 수 없을 때
-		
-		
-		int mid=(left+right)/2;
-		
-		int leftNode=node*2;
-		
-		if(b<=tree[leftNode]+cnt) {
-			return find(tree, b, node*2, left, mid, cnt);
-		}else {
-			return find(tree, b, node*2+1, mid+1, right, cnt+tree[leftNode]);
-		}
-		
-		
-	}
-
-
-
-	private static void update(int[] tree, int index, int val, int node, int left, int right) {
-
-		if (index < left | index > right)
-			return;
-
-		if (left == right) {
-			tree[node] += val;
-			return ;
 		}
 
-		int mid = (left + right) / 2;
+		for (int i = 0; i < N; i++) {
+			char[] inp = br.readLine().toCharArray();
+			for (int j = 0; j < M; j++) {
+				if (inp[j] == '1')
+					B[i][j] = true;
+			}
+		}
 
-		if (index <= mid) {
-			update(tree, index, val, node * 2, left, mid);
+		if (N < 3 || M < 3) {
+			if (isSame(A, B, N, M))
+				System.out.println(0);
+			else
+				System.out.println(-1);
 		} else {
-			update(tree, index, val, node * 2 + 1, mid + 1, right);
+			f(A, B, N, M);
+			System.out.println(minCnt);
+		}
+	}
+
+	private static void f(boolean[][] a, boolean[][] b, int N, int M) {
+
+		if (isSame(a, b, N, M)) {
+			minCnt = 0;
+			return;
+		}
+		int cnt = 0;
+		for (int i = 0; i < N - 2; i++) {
+			for (int j = 0; j < M - 2; j++) {
+				if (a[i][j] != b[i][j]) {
+					change(i, j, a);
+					cnt++;
+					if (isSame(a, b, N, M)) {
+						minCnt = cnt;
+						return;
+					}
+				}
+			}
 		}
 
-		tree[node] = tree[node * 2] + tree[node * 2 + 1];
+	}
 
+	private static void change(int i, int j, boolean[][] a) {
+
+		for (int r = i; r < i + 3; r++) {
+			for (int c = j; c < j + 3; c++) {
+				if (a[r][c])
+					a[r][c] = false;
+				else
+					a[r][c] = true;
+			}
+		}
+
+	}
+
+	private static boolean isSame(boolean[][] a, boolean[][] b, int N, int M) {
+
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				if (a[i][j] != b[i][j])
+					return false;
+			}
+		}
+
+		return true;
 	}
 
 }
