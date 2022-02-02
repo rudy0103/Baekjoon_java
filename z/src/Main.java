@@ -8,40 +8,10 @@ public class Main {
 	static int minCnt = -1;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
-
-		boolean[][] A = new boolean[N][M];
-		boolean[][] B = new boolean[N][M];
-
-		for (int i = 0; i < N; i++) {
-			char[] inp = br.readLine().toCharArray();
-			for (int j = 0; j < M; j++) {
-				if (inp[j] == '1')
-					A[i][j] = true;
-			}
-		}
-
-		for (int i = 0; i < N; i++) {
-			char[] inp = br.readLine().toCharArray();
-			for (int j = 0; j < M; j++) {
-				if (inp[j] == '1')
-					B[i][j] = true;
-			}
-		}
-
-		if (N < 3 || M < 3) {
-			if (isSame(A, B, N, M))
-				System.out.println(0);
-			else
-				System.out.println(-1);
-		} else {
-			f(A, B, N, M);
-			System.out.println(minCnt);
-		}
+		
+		String A="CABADSA";
+		String B="BBSADAS";
+		System.out.println(A.compareTo(B));
 	}
 
 	private static void f(boolean[][] a, boolean[][] b, int N, int M) {
