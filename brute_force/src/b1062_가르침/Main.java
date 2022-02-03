@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 
-import jdk.nashorn.internal.ir.SetSplitState;
-
 public class Main {
 
 	static int maxCnt;
@@ -18,20 +16,18 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
 		int N = Integer.parseInt(st.nextToken());
-		int K = Integer.parseInt(st.nextToken());
+		int K = Integer.parseInt(st.nextToken())-5;
 
+		
+        if(K<0) {System.out.println(0); return;}
+        if(K==21) {System.out.println(N); return;}
 		teach(N, K, br);
 		System.out.println(maxCnt);
 	}
 
 	private static void teach(int n, int k, BufferedReader br) throws IOException {
-		if (k < 5)
-			return;
 
-		HashSet<String> set = new HashSet<>();
-		
-		boolean[][]words=new boolean[n][26];
-		
+		boolean[][]words=new boolean[n][26];		
 		boolean[]teached=new boolean[26];
 		
 		teached['a'-'a']=true;
@@ -48,19 +44,21 @@ public class Main {
 			}
 		}
 		
-		subSet(0,0,k-5,words,teached);
+		subSet(0,0,k,words,teached);
 
 	}
 
 	private static void subSet(int l,int d, int D,  boolean[][] words, boolean[] teached) {
+	
 		
 		if(d==D) {
+	
 			int cnt=0;
 			
 			for(int i=0;i<words.length;i++) {
 				boolean flag=true;
 				for(int j=0;j<26;j++) {
-					if(!teached[j]&&words[i][j]) {
+					if(words[i][j]&&!teached[j]) {
 						flag=false;
 						break;
 					}
@@ -72,7 +70,12 @@ public class Main {
 			return;
 		}
 		
-		if(teached[l]) return;
+		if(l>=26) return;
+		
+		if(teached[l]) {
+			subSet(l+1, d, D, words, teached);
+			return;
+		}
 		
 		teached[l]=true;
 		subSet(l+1, d+1, D, words, teached);
