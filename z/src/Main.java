@@ -1,64 +1,83 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Main {
 
-	static int minCnt = -1;
-
+	static long cnt=0;
+	static int[] newArr;
+	
 	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N=Integer.parseInt(br.readLine());
+		int []arr=new int[N];
+		newArr=new int[N];
+		StringTokenizer st = new StringTokenizer(br.readLine()," ");
 		
-		String A="CABADSA";
-		String B="BBSADAS";
-		System.out.println(A.compareTo(B));
+		HashMap<String,Integer> hMap=new HashMap<>();
+		
+		int idx=0;
+		for(int i=0;i<N;i++) {
+			hMap.put(st.nextToken(),++idx);
+		}
+		
+		st = new StringTokenizer(br.readLine()," ");
+		
+		for(int i=0;i<N;i++) {
+			arr[i]=hMap.get(st.nextToken());
+		}
+		
+		mergeSort(arr,0,N-1);
+		
+		System.out.println(cnt);
 	}
 
-	private static void f(boolean[][] a, boolean[][] b, int N, int M) {
-
-		if (isSame(a, b, N, M)) {
-			minCnt = 0;
-			return;
-		}
-		int cnt = 0;
-		for (int i = 0; i < N - 2; i++) {
-			for (int j = 0; j < M - 2; j++) {
-				if (a[i][j] != b[i][j]) {
-					change(i, j, a);
-					cnt++;
-					if (isSame(a, b, N, M)) {
-						minCnt = cnt;
-						return;
-					}
-				}
+	private static void mergeSort(int[] arr, int left, int right) {
+		
+		if(left==right) return ;
+		
+		
+		int mid=(left+right)/2;
+		
+		
+		mergeSort(arr, left, mid);
+		mergeSort(arr, mid+1, right);
+		
+		if(arr[mid]<=arr[mid+1]) return;
+		
+		int leftLen= mid-left+1;
+		
+		int leftIdx=left;
+		int rightIdx=mid+1;
+		
+		int idx=0;
+		
+		while(leftIdx<=mid&&rightIdx<=right) {
+			
+			if(arr[leftIdx]<=arr[rightIdx]) {
+				newArr[idx++]=arr[leftIdx++];
+				leftLen--;
+			}else {
+				newArr[idx++]=arr[rightIdx++];
+				cnt+=leftLen;
 			}
 		}
-
-	}
-
-	private static void change(int i, int j, boolean[][] a) {
-
-		for (int r = i; r < i + 3; r++) {
-			for (int c = j; c < j + 3; c++) {
-				if (a[r][c])
-					a[r][c] = false;
-				else
-					a[r][c] = true;
+		
+		if(leftIdx>mid) {
+			while(rightIdx<=right) {
+				newArr[idx++]=arr[rightIdx++];
+			}
+		}else {
+			while(leftIdx<=mid) {
+				newArr[idx++]=arr[leftIdx++];
 			}
 		}
-
-	}
-
-	private static boolean isSame(boolean[][] a, boolean[][] b, int N, int M) {
-
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
-				if (a[i][j] != b[i][j])
-					return false;
-			}
+		
+		idx=0;
+		for(int i=left;i<=right;i++) {
+			arr[i]=newArr[idx++];
 		}
-
-		return true;
 	}
-
 }
