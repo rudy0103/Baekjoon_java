@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.StringTokenizer;
 
 public class Main {
 
@@ -11,73 +9,22 @@ public class Main {
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N=Integer.parseInt(br.readLine());
-		int []arr=new int[N];
-		newArr=new int[N];
-		StringTokenizer st = new StringTokenizer(br.readLine()," ");
 		
-		HashMap<String,Integer> hMap=new HashMap<>();
+		String inp=br.readLine();
 		
-		int idx=0;
-		for(int i=0;i<N;i++) {
-			hMap.put(st.nextToken(),++idx);
+		
+		while(!inp.equals("#")) {
+			
+			
+			
+			
+			
+			inp=br.readLine();
 		}
 		
-		st = new StringTokenizer(br.readLine()," ");
 		
-		for(int i=0;i<N;i++) {
-			arr[i]=hMap.get(st.nextToken());
-		}
-		
-		mergeSort(arr,0,N-1);
-		
-		System.out.println(cnt);
 	}
 
-	private static void mergeSort(int[] arr, int left, int right) {
-		
-		if(left==right) return ;
-		
-		
-		int mid=(left+right)/2;
-		
-		
-		mergeSort(arr, left, mid);
-		mergeSort(arr, mid+1, right);
-		
-		if(arr[mid]<=arr[mid+1]) return;
-		
-		int leftLen= mid-left+1;
-		
-		int leftIdx=left;
-		int rightIdx=mid+1;
-		
-		int idx=0;
-		
-		while(leftIdx<=mid&&rightIdx<=right) {
-			
-			if(arr[leftIdx]<=arr[rightIdx]) {
-				newArr[idx++]=arr[leftIdx++];
-				leftLen--;
-			}else {
-				newArr[idx++]=arr[rightIdx++];
-				cnt+=leftLen;
-			}
-		}
-		
-		if(leftIdx>mid) {
-			while(rightIdx<=right) {
-				newArr[idx++]=arr[rightIdx++];
-			}
-		}else {
-			while(leftIdx<=mid) {
-				newArr[idx++]=arr[leftIdx++];
-			}
-		}
-		
-		idx=0;
-		for(int i=left;i<=right;i++) {
-			arr[i]=newArr[idx++];
-		}
-	}
+
+
 }
