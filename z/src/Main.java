@@ -1,48 +1,43 @@
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {
 
-
+	static int cnt;
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 			
-		int N=10;
-		int [] arr = new int[N];
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N=Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		for(int i=0;i<N;i++) arr[i]=i;
+		int arr[]=new int[N];
+	
+		for(int i=0;i<N;i++) arr[i]=Integer.parseInt(st.nextToken());
 		
+		int sum=Integer.parseInt(br.readLine());
 		
-		ArrayList<int[]> list = getPair(arr,10,10);
+		getPair(arr,N,sum);
 		
-		System.out.println(list.size());
-		
-		for(int[] e:list) {
-			System.out.println(e[0]+" "+e[1]);
-		}
-		
-		
+		System.out.println(cnt);
+				
 	}
 
-	private static ArrayList<int[]> getPair(int[] arr, int size, int sum) {
+	private static void getPair(int[] arr, int size, int sum) {
 		
 		Arrays.sort(arr);
-		System.out.println(Arrays.toString(arr));
-		
-		
-		ArrayList<int[]> list =new ArrayList<>();
-		
 		for(int pos=0;pos<size-1;pos++) {
 			
-			func(pos,size-1,sum,arr,list);
-			
+			func(pos,size-1,sum,arr);
 		}
-		
-		return list;
+	
 	}
 
-	private static void func(int pos, int r, int sum,int[] arr,ArrayList<int[]> list) {
+	private static void func(int pos, int r, int sum,int[] arr) {
 		
 		
 		int left=pos+1;
@@ -56,17 +51,7 @@ public class Main {
 			
 			if(e+arr[pos]==sum) {
 				
-				list.add(new int[] {arr[pos],e});
-				
-				for(int p=mid-1;p>pos;p--) {
-					if(arr[p]!=e) break;
-					list.add(new int[] {arr[p],e});
-				}
-				
-				for(int p=mid+1;p<mid;p++) {
-					if(arr[p]!=e) break;
-					list.add(new int[] {arr[p],e});
-				}
+				cnt++;
 				break;
 				
 			}else if(e+arr[pos]<sum) {
