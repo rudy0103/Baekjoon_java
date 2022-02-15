@@ -49,9 +49,9 @@ public class Main {
 				// 일직선				
 				spread1(curr,dq);
 				//대각선 1.
-				spread2(curr,dq);				
+				spread2(curr,dq,0);				
 				//대각선 2.
-				spread3(curr,dq);
+				spread2(curr,dq,1);
 				
 			}
 			
@@ -60,26 +60,9 @@ public class Main {
 
 		}
 
-		private void spread3(int[] curr, ArrayDeque<int[]> dq) {
-			int nd=dir[d][1];
-			int nr=curr[0]+dr[nd];
-			int nc=curr[1]+dc[nd];
-			if(nr<0||nr>=R||nc<0||nc>=C||visited[nr][nc]) return;
-			if(blocked[curr[0]][curr[1]][nd]) return;
+		private void spread2(int[] curr, ArrayDeque<int[]> dq,int k) {
 			
-			int nnr=nr+dr[d];
-			int nnc=nc+dc[d];
-			if(nnr<0||nnr>=R||nnc<0||nnc>=C||visited[nnr][nnc]) return;
-			if(blocked[nr][nc][d]) return;
-			visited[nnr][nnc]=true;
-			temperature[nnr][nnc]=curr[2]-1;
-			dq.add(new int[] {nnr,nnc,curr[2]-1});
-			
-		}
-
-		private void spread2(int[] curr, ArrayDeque<int[]> dq) {
-			
-			int nd=dir[d][0];
+			int nd=dir[d][k];
 			int nr=curr[0]+dr[nd];
 			int nc=curr[1]+dc[nd];
 			if(nr<0||nr>=R||nc<0||nc>=C||visited[nr][nc]) return;
@@ -213,8 +196,7 @@ public class Main {
 		
 //		printMap(map);
 
-		if(choco>100) System.out.println(101);
-		else System.out.println(choco);
+		System.out.println(choco);
 
 	}
 
