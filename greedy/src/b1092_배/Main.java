@@ -93,8 +93,6 @@ public class Main {
 				time++;
 			}
 			
-			
-
 			System.out.println(time);
 		}
 
