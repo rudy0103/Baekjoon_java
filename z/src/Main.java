@@ -1,94 +1,80 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = null;
-
-
-		int N = Integer.parseInt(br.readLine());
-		st = new StringTokenizer(br.readLine(), " ");
-		int[] crains = new int[N];
-
-		for (int i = 0; i < N; i++)
-			crains[i] = Integer.parseInt(st.nextToken());
-
-		Arrays.sort(crains);
-
-		int M = Integer.parseInt(br.readLine());
-
-		int [] freight=new int[M];
-
-		st = new StringTokenizer(br.readLine(), " ");
-
-		for (int i = 0; i < M; i++) {
-			freight[i]= Integer.parseInt(st.nextToken());
-
-		}
+		Scanner sc = new Scanner(System.in);
 		
-		Arrays.sort(freight);
+		int N=sc.nextInt();
 		
-		if(freight[M-1]>crains[N-1]) {
-			System.out.println(-1);
-		}else {
-			
-			int [] index=new int[M];
+		int arr[]=new int[N+1];
+		Arrays.fill(arr, Integer.MAX_VALUE);
 		
+		ArrayDeque<int[]> q= new ArrayDeque<>();
+
+		arr[1]=0;
+		q.add(new int[] {1,0});
+		
+		while(!q.isEmpty()) {
 			
-			for(int i=0;i<M;i++) {
-				for(int j=0;j<N;j++) {
-					if(crains[j]>=freight[i]) {
-						index[i]=j;
-						break;
-					}
-				}
-			}
-			int [] cnt=new int[N];
+			int []now=q.poll();
 			
-			PriorityQueue<Integer> pq  = new PriorityQueue<>(new Comparator<Integer>() {
-				@Override
-				public int compare(Integer o1, Integer o2) {
-					if(cnt[o1]!=cnt[o2])
-						return cnt[o1]-cnt[o2];
-					else return o2-o1;
-				}
-			});
 			
-			boolean[] visited=new boolean[N];
+			if(now[0]>N) continue;
 			
-			int j=M-1;
+			int next=now[0]*2;
 			
-			while(j>=0) {
-				int idx=index[j];
-				for(int i=idx;i<N;i++) {
-					if(!visited[i]) {
-						visited[i]=true;
-						pq.add(i);
-					}
-				}
-				
-				int putIdx=pq.poll();
-				cnt[putIdx]++;
-				pq.add(putIdx);
-				j--;
-				
+			if(next<=N&&arr[next]==Integer.MAX_VALUE) {
+				arr[next]=now[1]+1;
+				q.add(new int[] {next,now[1]+1});
 			}
 			
-			int timer=0;
-			for(int i=0;i<N;i++) {
-				timer=Math.max(timer,cnt[i]);
+			next=now[0]*3;
+			if(next<=N&&arr[next]==Integer.MAX_VALUE) {
+				arr[next]=now[1]+1;
+				q.add(new int[] {next,now[1]+1});
 			}
-			System.out.println(timer);
+			
+			next=now[0]+1;
+			if(next<=N&&arr[next]==Integer.MAX_VALUE) {
+				arr[next]=now[1]+1;
+				q.add(new int[] {next,now[1]+1});
+			}
+			
 			
 		}
+		System.out.println(arr[N]);
+		StringBuilder sb = new StringBuilder();
+		
+		ArrayDeque<Integer> dq = new ArrayDeque<>();
+		dq.add(N);
+		while(!dq.isEmpty()) {
+			int a=dq.poll();
+			sb.append(a+" ");
+			
+			
+			if(arr[a-1]==arr[a]-1) {
+				dq.add(a-1);
+				continue;
+			}
+			
+			if(a%2==0&&arr[a/2]==arr[a]-1) {
+				dq.add(a/2);
+				continue;
+			}
+			
+			if(a%3==0&&arr[a/3]==arr[a]-1) {
+				dq.add(a/3);
+				continue;
+			}
+			
+		}
+		System.out.println(sb);
 		
 	}
 }
