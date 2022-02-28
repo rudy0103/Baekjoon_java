@@ -10,12 +10,12 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-	static class Node {
+	static class Edge {
 		int to;
 		int w;
-		Node link;
+		Edge link;
 
-		public Node(int to, int w, Node link) {
+		public Edge(int to, int w, Edge link) {
 			super();
 			this.to = to;
 			this.w = w;
@@ -35,7 +35,7 @@ public class Main {
 
 		int[] cost = new int[N];
 
-		Node[] gragh = new Node[N];
+		Edge[] gragh = new Edge[N];
 
 		for (int i = 0; i < M; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -43,17 +43,22 @@ public class Main {
 			int to = Integer.parseInt(st.nextToken());
 			int w = Integer.parseInt(st.nextToken());
 
-			gragh[from] = new Node(to, w, gragh[from]);
-			gragh[to] = new Node(from, w, gragh[to]);
+			gragh[from] = new Edge(to, w, gragh[from]);
+			gragh[to] = new Edge(from, w, gragh[to]);
 		}
 		
 		dijkstra(cost,Y,gragh);
 		
 		boolean possible =true;
 		
-		for(int c:cost) {
-			if(c*2>X) possible=false;
+		for(int i=0;i<N;i++) {
+			cost[i]*=2;
+			if(cost[i]>X) {
+				possible=false;
+				break;
+			}
 		}
+		
 
 		
 		if(possible) {
@@ -62,10 +67,10 @@ public class Main {
 			int dist=X;
 			
 			for(int i=0;i<N;i++) {
-				if(dist-cost[i]*2>=0) dist-=cost[i]*2;
+				if(dist-cost[i]>=0) dist-=cost[i];
 				else {
 					day++;
-					dist=X-cost[i]*2;
+					dist=X-cost[i];
 				}
 			}
 			
@@ -77,7 +82,7 @@ public class Main {
 
 	}
 
-	private static void dijkstra(int[] cost, int y,Node[] gragh) {
+	private static void dijkstra(int[] cost, int y,Edge[] gragh) {
 		
 		Arrays.fill(cost, Integer.MAX_VALUE);
 		
@@ -100,10 +105,10 @@ public class Main {
 			if(cost[now]<curr[1]) continue;
 			
 			
-			for(Node node=gragh[now];node!=null;node=node.link) {
+			for(Edge edge=gragh[now];edge!=null;edge=edge.link) {
 				
-				int next=node.to;
-				int nextCost=curr[1]+node.w;
+				int next=edge.to;
+				int nextCost=curr[1]+edge.w;
 				
 				if(nextCost<cost[next]) {
 					cost[next]=nextCost;
