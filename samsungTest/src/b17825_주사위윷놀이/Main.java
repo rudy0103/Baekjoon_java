@@ -3,7 +3,6 @@ package b17825_주사위윷놀이;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -45,7 +44,6 @@ public class Main {
 
 		for (int i = 0; i < 4; i++) {
 
-
 			if(map[horses[i][0]][horses[i][1]]==-1) continue;
 			
 			before[d][0]=horses[i][0];
@@ -53,9 +51,10 @@ public class Main {
 	
 			int s=0;
 			if(horses[i][0]==0&&map[horses[i][0]][horses[i][1]]%10==0) {
-				if(map[horses[i][0]][horses[i][1]]!=40)
+				if(map[horses[i][0]][horses[i][1]]!=40) {
 					horses[i][0]=map[horses[i][0]][horses[i][1]]/10;
-				horses[i][1]=0;
+					horses[i][1]=0;
+				}
 			}
 			
 			int next=horses[i][1];
@@ -78,12 +77,20 @@ public class Main {
 						possible=false;
 						break;
 					}
+				}else if(map[horses[j][0]][horses[j][1]]==map[horses[i][0]][horses[i][1]]) {
+					if(map[horses[j][0]][horses[j][1]]==25||map[horses[j][0]][horses[j][1]]==35||map[horses[j][0]][horses[j][1]]==40) {
+						possible=false;
+						break;
+					}else if(horses[j][0]>0&&horses[i][0]>0&&map[horses[j][0]][horses[j][1]]==30) {
+						possible=false;
+						break;
+					}
 				}
 			}
 			if(!possible) {
 				horses[i][0]=before[d][0];
 				horses[i][1]=before[d][1];
-				return;
+				continue;
 			}
 			
 			playGame(d + 1, map, horses, dice,score+s);
