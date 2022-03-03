@@ -1,80 +1,77 @@
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.Scanner;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
+	
+	static long min;
+	static int N,M,max;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		Scanner sc = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		int N=sc.nextInt();
+		long K=0;
 		
-		int arr[]=new int[N+1];
-		Arrays.fill(arr, Integer.MAX_VALUE);
+		N=Integer.parseInt(st.nextToken());
+		M=Integer.parseInt(st.nextToken());
 		
-		ArrayDeque<int[]> q= new ArrayDeque<>();
-
-		arr[1]=0;
-		q.add(new int[] {1,0});
-		
-		while(!q.isEmpty()) {
-			
-			int []now=q.poll();
-			
-			
-			if(now[0]>N) continue;
-			
-			int next=now[0]*2;
-			
-			if(next<=N&&arr[next]==Integer.MAX_VALUE) {
-				arr[next]=now[1]+1;
-				q.add(new int[] {next,now[1]+1});
-			}
-			
-			next=now[0]*3;
-			if(next<=N&&arr[next]==Integer.MAX_VALUE) {
-				arr[next]=now[1]+1;
-				q.add(new int[] {next,now[1]+1});
-			}
-			
-			next=now[0]+1;
-			if(next<=N&&arr[next]==Integer.MAX_VALUE) {
-				arr[next]=now[1]+1;
-				q.add(new int[] {next,now[1]+1});
-			}
-			
-			
+		int[] arr = new int[N];
+		for(int i=0;i<N;i++) {
+			arr[i]=Integer.parseInt(br.readLine());
+			max=Math.max(max, arr[i]);
+			K+=arr[i];
 		}
-		System.out.println(arr[N]);
-		StringBuilder sb = new StringBuilder();
 		
-		ArrayDeque<Integer> dq = new ArrayDeque<>();
-		dq.add(N);
-		while(!dq.isEmpty()) {
-			int a=dq.poll();
-			sb.append(a+" ");
-			
-			
-			if(arr[a-1]==arr[a]-1) {
-				dq.add(a-1);
-				continue;
-			}
-			
-			if(a%2==0&&arr[a/2]==arr[a]-1) {
-				dq.add(a/2);
-				continue;
-			}
-			
-			if(a%3==0&&arr[a/3]==arr[a]-1) {
-				dq.add(a/3);
-				continue;
-			}
-			
-		}
-		System.out.println(sb);
+		min=K;
+		
+		getMin(arr,1,K);
+		
+		System.out.println(min);
+		
+		
 		
 	}
+
+	private static void getMin(int[] arr, long left, long right) {
+		
+		if(left>right) return;
+		
+		long mid=(left+right)/2;
+		
+		if(isPossible(arr,mid)) {
+			min=Math.min(mid,min);
+			right=mid-1;
+			getMin(arr, left, right);
+			
+		}else {
+			left=mid+1;
+			getMin(arr, left, right);
+		}
+		
+		
+	}
+
+	private static boolean isPossible(int[] arr, long mid) {
+		if(mid<max) return false;
+		
+		int cnt=0;
+		
+		long curr=0;
+		
+		for(int i=0;i<N;i++) {
+			if(arr[i]>curr) {
+				curr=mid-arr[i];
+				cnt++;
+			}else {
+				curr-=arr[i];
+			}
+		}
+		
+		if(cnt>M) return false;
+		
+		return true;
+	}
+
 }
