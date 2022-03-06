@@ -22,6 +22,7 @@ A, D, F, G가 이동하고, 이동하려는 칸에 말이 E, C, B로 있는 경�
 
 public class Main {
 
+	static boolean finished = false;
 	static int[] dr = { 0, 0, 0, -1, 1 };
 	static int[] dc = { 0, 1, -1, 0, 0 };
 	static int[][] map;
@@ -77,6 +78,8 @@ public class Main {
 				}
 				for (int i = loc[r][c].size() - 1; i >= idx; i--) {
 					list.get(loc[r][c].get(i)).moveRC(nr, nc);
+					if (loc[nr][nc].size() >= 4) //4개 이상.. 문제를 잘 읽자
+						finished =true;
 					loc[r][c].remove(i);
 				}
 
@@ -93,6 +96,8 @@ public class Main {
 				for (int i = loc[r][c].size() - 1; i >= idx; i--) {
 					loc[nr][nc].add(loc[r][c].get(i));
 					list.get(loc[r][c].get(i)).moveRC(nr, nc);
+					if (loc[nr][nc].size() >= 4) //4개 이상.. 문제를 잘 읽자
+						finished =true;
 					loc[r][c].remove(i);
 				}
 			}
@@ -143,16 +148,11 @@ public class Main {
 		}
 		int turn = 1;
 
-		boolean finished = false;
 
 		while (turn <= 1000 && !finished) {
 			for (int i = 1; i <= K; i++) {// K개의 말을 K번 이동
 
 				list.get(i).move();
-				if (isFinished()) {
-					finished = true;
-					break;
-				}
 			}
 			if(!finished)
 				turn++;
@@ -164,16 +164,6 @@ public class Main {
 
 	}
 
-	private static boolean isFinished() {
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				if (loc[i][j].size() >= 4) //4개 이상.. 문제를 잘 읽자
-					return true;
-			}
-		}
-
-		return false;
-	}
 
 	private static void printLoc() {
 
