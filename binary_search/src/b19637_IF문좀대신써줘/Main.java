@@ -1,4 +1,4 @@
-package b19637;
+package b19637_IF문좀대신써줘;
 
 import java.io.BufferedReader;
 import java.io.IOException;
