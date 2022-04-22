@@ -1,7 +1,7 @@
 package b21611_마법사상어와블리자드;
 
 
-//19:50~
+//19:50~21:25
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -172,8 +172,8 @@ public class Main {
 					if(st.size()>=4) {
 						while(!st.isEmpty()) {
 							int tmp=st.peek().num;
-							ret+=tmp;
 							st.pop().num=0;
+							ret+=tmp;
 						}
 					}
 					
@@ -187,8 +187,8 @@ public class Main {
 		if(st.size()>=4) {
 			while(!st.isEmpty()) {
 				int tmp=st.peek().num;
-				ret+=tmp;
 				st.pop().num=0;
+				ret+=tmp;
 			}
 		}
 		
