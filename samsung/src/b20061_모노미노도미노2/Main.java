@@ -48,17 +48,7 @@ public class Main {
 
 	}
 
-	private static int type1(int x, int y, int[][] map) {
-		
 
-		int dx=down(x,y,map);
-		
-		map[dx][y]=1;
-		
-		
-		return getScore(map);
-	}
-	
 
 	private static int getScore(int[][] map) {
 		
@@ -127,6 +117,18 @@ public class Main {
 		
 		return sx;
 	}
+	
+	private static int type1(int x, int y, int[][] map) {
+		
+
+		int dx=down(x,y,map);
+		
+		map[dx][y]=1;
+		
+		
+		return getScore(map);
+	}
+	
 
 	private static int type2(int x, int y, int[][] map) { //가로
 
