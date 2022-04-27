@@ -46,11 +46,11 @@ public class Main {
 	private static void func(int[][] map, int[] fish) {
 
 		pushFish(fish);
+		
 		stackFish(map, fish);
-
 		divideFish(map);
-
 		serializeFish(map, fish);
+		
 		stackFish2(map, fish);
 		divideFish(map);
 		serializeFish(map, fish);
@@ -185,8 +185,6 @@ public class Main {
 	}
 	
 	private static void pushFish(int[] fish) {
-		
-		
 		for (int i = 0; i < N; i++) {
 			if (fish[i] == min)
 				fish[i]++;	

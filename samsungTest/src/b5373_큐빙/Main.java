@@ -19,13 +19,13 @@ public class Main {
 			Area back = new Area('o', 'B');
 			Area left = new Area('g', 'L');
 			Area right = new Area('b', 'R');
-
-			up.setAdj(new String[] { "F1", "B1", "L1", "R1" });
-			down.setAdj(new String[] { 'F', 'B', 'L', 'R' });
-			front.setAdj(new String[] { 'U', 'D', 'L', 'R' });
-			back.setAdj(new String[] { 'U1', 'D3', 'L', 'R' });
-			left.setAdj(new String[] { 'U', 'D', 'F', 'B' });
-			right.setAdj(new String[] { 'U', 'D', 'F', 'B' });
+//
+//			up.setAdj(new String[] { "F1", "B1", "L1", "R1" });
+//			down.setAdj(new String[] { 'F', 'B', 'L', 'R' });
+//			front.setAdj(new String[] { 'U', 'D', 'L', 'R' });
+//			back.setAdj(new String[] { 'U1', 'D3', 'L', 'R' });
+//			left.setAdj(new String[] { 'U', 'D', 'F', 'B' });
+//			right.setAdj(new String[] { 'U', 'D', 'F', 'B' });
 			hmap.put('U', up);
 			hmap.put('D', down);
 			hmap.put('F', front);
