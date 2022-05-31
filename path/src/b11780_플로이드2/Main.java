@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
-import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
 
 public class Main {
 

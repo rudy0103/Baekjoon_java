@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.util.LinkedList;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
 public class Main {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {

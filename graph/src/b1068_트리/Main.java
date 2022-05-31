@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.StringTokenizer;
 
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
 
 public class Main {
 
