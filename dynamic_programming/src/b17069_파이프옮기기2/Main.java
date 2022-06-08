@@ -1,4 +1,4 @@
-package b17070_파이프옮기기1;
+package b17069_파이프옮기기2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class Main {
 			}
 		}
 
-		int[][][] dp = new int[N][N][3];
+		long[][][] dp = new long[N][N][3];
 		dp[0][1][0] = 1;
 
 		for (int i = 0; i < N; i++) {
@@ -51,9 +51,7 @@ public class Main {
 			}
 		}
 
-
-
-		int sum = dp[N - 1][N - 1][0] + dp[N - 1][N - 1][1] + dp[N - 1][N - 1][2];
+		long sum = dp[N - 1][N - 1][0] + dp[N - 1][N - 1][1] + dp[N - 1][N - 1][2];
 		System.out.println(sum);
 	}
 
