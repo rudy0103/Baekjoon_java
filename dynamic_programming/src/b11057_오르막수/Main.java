@@ -30,8 +30,5 @@ public class Main {
 			sum%=m;
 		}
 		System.out.println(sum);
-		
-		
 	}
-
 }
