@@ -72,5 +72,5 @@ local.properties
 /.recommenders/
 *.sh
 
-/z/*
-/ztest/*
+**/z/
+**/ztest/
