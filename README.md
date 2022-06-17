@@ -3,7 +3,7 @@
 
 
 
-|        분류         | 설명                       | 링크                                                         |
+|        분류         |                  설명                | 링크                                                         |
 | :-----------------: | :--------------------------: | ------------------------------------------------------------ |
 |      1_bronze       | 브론즈 티어 문제           | https://github.com/rudy0103/Baekjoon_java/tree/master/1_bronze/src |
 |      2_silver       | 실버 티어 문제             | https://github.com/rudy0103/Baekjoon_java/tree/master/2_silver/src |
