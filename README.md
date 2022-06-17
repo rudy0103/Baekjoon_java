@@ -4,7 +4,7 @@
 
 
 |        분류         |                  설명                | 링크                                                         |
-| :-----------------: | :--------------------------: | :----------------------------------------------------------: |
+| :-----------------: | :--------------------------: | :----------------------------------------------------------- |
 |      1_bronze       | 브론즈 티어 문제           | https://github.com/rudy0103/Baekjoon_java/tree/master/1_bronze/src |
 |      2_silver       | 실버 티어 문제             | https://github.com/rudy0103/Baekjoon_java/tree/master/2_silver/src |
 |       3_gold        | 골드 티어 문제             | https://github.com/rudy0103/Baekjoon_java/tree/master/3_gold/src |
@@ -33,7 +33,7 @@
 |    slidingWindow    | 슬라이딩윈도우             | https://github.com/rudy0103/Baekjoon_java/tree/master/slidingWindow |
 |        sort         | 정렬                       | https://github.com/rudy0103/Baekjoon_java/tree/master/sort/src |
 |       string        | 문자열                     | https://github.com/rudy0103/Baekjoon_java/tree/master/string/src |
-|        tree         | 트리                       | https://github.com/rudy0103/Baekjoon_java/tree/master/tree/src/b5639_%EC%9D%B4%EC%A7%84%EA%B2%80%EC%83%89%ED%8A%B8%EB%A6%AC |
+|        tree         | 트리&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                       | https://github.com/rudy0103/Baekjoon_java/tree/master/tree/src/b5639_%EC%9D%B4%EC%A7%84%EA%B2%80%EC%83%89%ED%8A%B8%EB%A6%AC |
 |        trie         | 트라이                     | https://github.com/rudy0103/Baekjoon_java/tree/master/trie   |
 |     two_pointer     | 투포인터                   | https://github.com/rudy0103/Baekjoon_java/tree/master/two_pointer/src |
 |     union_find      | 유니온 파인드              | https://github.com/rudy0103/Baekjoon_java/tree/master/union_find/src |
