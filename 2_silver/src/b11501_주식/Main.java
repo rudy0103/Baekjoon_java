@@ -19,7 +19,7 @@ public class Main {
 			int[] arr = new int[N];
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			
-			long total=0;
+			long tot=0;
 			for(int i=0;i<N;i++) {
 				arr[i]=Integer.parseInt(st.nextToken());
 			}
@@ -33,13 +33,13 @@ public class Main {
 			}
 			while(idx>=0) {
 				if(arr[idx]<high) {
-					total+=high-arr[idx--];
+					tot+=high-arr[idx--];
 				}
 				else {
 					high=arr[idx--];
 				}
 			}
-			sb.append(total+"\n");
+			sb.append(tot+"\n");
 			
 		}
 		System.out.println(sb.toString());
