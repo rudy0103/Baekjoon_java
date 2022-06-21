@@ -30,12 +30,12 @@ public class Main {
 		
 		long left=0,right=min;
 		
-		divideAndConquer(arr,left,right);
+		binarySearch(arr,left,right);
 		
 		System.out.println(min);
 	}
 
-	private static void divideAndConquer(long[] arr, long left, long right) {
+	private static void binarySearch(long[] arr, long left, long right) {
 		
 		if(left>=right) {
 			return;
@@ -51,10 +51,10 @@ public class Main {
 		}
 		
 		if(cnt>=M) {
-			divideAndConquer(arr, left, mid);
+			binarySearch(arr, left, mid);
 			min=Math.min(min, mid);
 		}else {
-			divideAndConquer(arr, mid+1, right);
+			binarySearch(arr, mid+1, right);
 		}
 	}
 }
