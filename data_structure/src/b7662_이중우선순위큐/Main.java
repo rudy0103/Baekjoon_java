@@ -16,6 +16,7 @@ public class Main {
 		StringBuilder sb = new StringBuilder();
 		
 		int T = Integer.parseInt(br.readLine());
+
 		
 		PriorityQueue<int []> minQ = new PriorityQueue<>(new Comparator<int[]>() {
 
@@ -24,6 +25,7 @@ public class Main {
 				return Integer.compare(o1[0], o2[0]);
 			}
 		});
+
 		PriorityQueue<int []> maxQ = new PriorityQueue<>(new Comparator<int[]>() {
 			@Override
 			public int compare(int[] o1, int[] o2) {
