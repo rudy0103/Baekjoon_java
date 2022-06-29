@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class Main {
 
 	
-	static long p=1000000007;
+//	static long p=1000000007;
+	static long p=10007;
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
