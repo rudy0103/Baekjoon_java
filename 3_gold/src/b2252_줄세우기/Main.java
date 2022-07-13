@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -55,14 +54,10 @@ public class Main {
 			
 			for(Edge edge=graph[s];edge!=null;edge=edge.link) {
 				int to=edge.to;
-				arr[to]--;
-				
-				if(arr[to]==0) {
+				if(--arr[to]==0) {
 					dq.add(to);
-				}
-				
+				}	
 			}
-			
 		}
 		System.out.println(sb.toString());
 		
