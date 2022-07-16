@@ -54,40 +54,42 @@ public class Main {
 		System.out.println(cnt);
 	}
 
-	private static int findRight(int[] arr, int num, int left, int right) {
+	private static int findRight(int[] arr, int num,int left, int right) {
 		int pos = -1;
 
-		while (left<=right) {
+
+		while (left <= right) {
 			int mid = (left + right) / 2;
 
-			if (arr[mid] <= num) {
+			if (arr[mid] > num) {
+				right = mid - 1;
+			} else if (arr[mid] < num) {
+				left = mid + 1;
+			} else {
 				left = mid + 1;
 				if (arr[mid] == num)
 					pos = mid;
-			} else {
-				right = mid - 1;
 			}
-
 		}
 
 		return pos;
 	}
 
-	private static int findLeft(int[] arr, int num, int left, int right) {
-
+	private static int findLeft(int[] arr, int num,int left, int right) {
 		int pos = -1;
 
-		while (left<=right) {
+		while (left <= right) {
 			int mid = (left + right) / 2;
 
-			if (arr[mid] >= num) {
+			if (arr[mid] > num) {
+				right = mid - 1;
+			} else if (arr[mid] < num) {
+				left = mid + 1;
+			} else {
 				right = mid - 1;
 				if (arr[mid] == num)
 					pos = mid;
-			} else {
-				left = mid + 1;
 			}
-
 		}
 
 		return pos;
